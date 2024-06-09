@@ -1,0 +1,22 @@
+.Layout {
+    height: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 15% 5% 80%;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.Layout > header,
+.Layout > aside {
+    grid-column: span 6;
+}
+
+.Layout>main {
+    grid-column: span 6;
+    overflow: auto;
+}
+
+.Layout,
+.Layout>* {
+    border: 1px solid;
+}

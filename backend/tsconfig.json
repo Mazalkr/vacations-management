@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "esModuleInterop": true,
+        "moduleResolution": "Node",
+    }
+}
+
+// "esModuleInterop"- allow us to use npm modules that use 'require' instead of 'import'.
+// "outDir": "build" - we don't need this line... because the files wont create.
