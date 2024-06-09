@@ -7,17 +7,31 @@ import formatDate from "../../../utils/formatDate";
 import formatPrice from "../../../utils/formatPrice";
 import getAbsoluteImageSrc from "../../../utils/getAbsoluteImageSrc";
 import appConfig from "../../../utils/AppConfig";
+import VacationCard from "../vacationCard/VacationCard";
+import { vacationsStore } from "../../../redux/VacationsState";
 // import RandomImageSource from '../../../../../backend/images/09719cc5-87be-4663-a2bc-acfb01b8aa67.jpg'
 
 
 function List(): JSX.Element {
 
+    // we need to use 'useState' because the data on the products is async and all the other commands are sync...
     const [vacations, setVacations] = useState<Vacation[]>([]);
 
+    // we need to use 'useEffect' to avoid the refresh & re-render every time the vacations data is updated...
     useEffect(() => {
         vacationsService.getAll()
-            .then(setVacations)
-            .catch(notify.error)
+            .then(vacationsFromServer => setVacations(vacationsFromServer))
+            .catch(error => notify.error(error));
+
+        // if there is any changes on vacationsStore (REDUX) --> get the new state of data:
+        const unsubscribe = vacationsStore.subscribe(() => {
+            setVacations([...vacationsStore.getState().vacations]);  
+            // with spread operator '[...productStore]' we're making a clone of 'productStore',
+            // and by that every change that we'll do on the clone wont effect on the original 'productStore'. 
+        })
+
+        return unsubscribe;  // it will unsubscribe after the component tehares (its happen when we click on another nav...)
+
     }, []);
 
     return (
@@ -27,7 +41,7 @@ function List(): JSX.Element {
 
             {/* <img src={RandomImageSource}/> */}
 
-            <table>
+            {/* <table>
                 <thead>
                     <tr>
                         <th>destination</th>
@@ -50,7 +64,13 @@ function List(): JSX.Element {
                         <td><img src={vacation.imageName ? `${appConfig.imagesUrl}/${vacation.imageName}` : ''}/></td>
                     </tr>)}
                 </tbody>
-            </table>
+            </table> */}
+
+            {vacations.map(v => <VacationCard key={v.id} vacation={v}/>)}
+
+
+
+
         </div>
 
         
