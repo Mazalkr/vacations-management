@@ -3,6 +3,7 @@ import getModel from "../../models/followers/factory";
 import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import config from 'config';
 import createHttpError, { Unauthorized }from "http-errors";
+import getImageUrl from "../../utils/getImageUrl";
 
 // table with number of followers for each vacation 
 export const getAll =  async (req: Request, res: Response, next: NextFunction) => {
@@ -28,7 +29,7 @@ export const countAllByVacation =  async (req: Request, res: Response, next: Nex
 export const getAllByUserFollowing =  async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vacations = await getModel().getAllByUserFollowing(req.params.userId)
-        res.json(vacations);
+        res.json(vacations.map(getImageUrl));
     } catch (err) {
         next(err);
     }
@@ -38,7 +39,7 @@ export const getAllByUserFollowing =  async (req: Request, res: Response, next: 
 export const getAllVacations =  async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vacations = await getModel().getAllVacations(req.params.userId)
-        res.json(vacations);
+        res.json(vacations.map(getImageUrl));
     } catch (err) {
         next(err);
     }

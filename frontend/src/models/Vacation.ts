@@ -5,7 +5,8 @@ class Vacation {
     public endDate?: Date;
     public price?: number;
     public description?: string;
-    public imageName?: string;
+    // public imageName?: string;
+    public imageUrl?: string;
     public image?: File;
 }
 

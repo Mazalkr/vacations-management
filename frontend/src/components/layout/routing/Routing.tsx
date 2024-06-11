@@ -1,3 +1,5 @@
+import Login from "../../auth/login/Login";
+import Signup from "../../auth/signup/Signup";
 import Home from "../../home/home/Home";
 // import Add from "../../loremIpsum/add/Add";
 import List from "../../vacations/list/List";
@@ -7,6 +9,11 @@ function Routing(): JSX.Element {
     return (
         <Routes>
 
+            <Route path="/signup" element={<Signup />} />
+            
+            <Route path="/login" element={<Login />} />
+
+            {/* to make the default page to 'home' we call the path: "/" */}
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Navigate to="/" />} />
 

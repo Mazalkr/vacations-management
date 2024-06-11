@@ -4,32 +4,32 @@ import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import config from 'config';
 import createHttpError, { Unauthorized }from "http-errors";
 import path from "path";
+import getImageUrl from '../../utils/getImageUrl'
+
 
 export const getAll =  async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vacations = await getModel().getAll();
-        res.json(vacations);
+        res.json(vacations.map(getImageUrl));
     } catch (err) {
         next(err);
     }
 }
 
-export const getAbsoluteImageSrc =  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const imageName = req.params.image;
-        const absolutePath = path.join(__dirname, '../../../images', imageName);
-        res.sendFile(absolutePath);
-    } catch (err) {
-        next(err);
-    }
-}
-
-
+// export const getAbsoluteImageSrc =  async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//         const imageName = req.params.image;
+//         const absolutePath = path.join(__dirname, '../../../images', imageName);
+//         res.sendFile(absolutePath);
+//     } catch (err) {
+//         next(err);
+//     }
+// }
 
 export const getFutureVacations =  async (req: Request, res: Response, next: NextFunction) => {
     try {
         const futureVacations = await getModel().getFutureVacations();
-        res.json(futureVacations);
+        res.json(futureVacations.map(getImageUrl));
     } catch (err) {
         next(err);
     }
@@ -38,7 +38,7 @@ export const getFutureVacations =  async (req: Request, res: Response, next: Nex
 export const getActiveVacations =  async (req: Request, res: Response, next: NextFunction) => {
     try {
         const activeVacations = await getModel().getActiveVacations();
-        res.json(activeVacations);
+        res.json(activeVacations.map(getImageUrl));
     } catch (err) {
         next(err);
     }

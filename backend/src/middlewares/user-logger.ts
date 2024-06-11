@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 export default function userLogger (req: Request, res: Response, next: NextFunction) {
-    const username = req.user ? req.user.email : 'Anonymous Guest';
+    const username = req.user ? req.user.email : 'Anonymous';
     console.log(`user ${username} accessed ${req.method}:${req.url}`);
     return next();
 }

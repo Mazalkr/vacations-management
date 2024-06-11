@@ -20,7 +20,8 @@ function VacationCard(props: VacationCardProps): JSX.Element {
     return (
         <div className="VacationCard">
             <div>
-                <img src={props.vacation.imageName ? `${appConfig.imagesUrl}/${props.vacation.imageName}` : ''}/>
+                {/* <img src={props.vacation.imageName ? `${appConfig.imagesUrl}/${props.vacation.imageName}` : ''}/> */}
+                <img src={props.vacation.imageUrl ? props.vacation.imageUrl : ''} />
                 <br/>
                 {props.vacation.destination}
                 <br/>

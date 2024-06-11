@@ -8,6 +8,7 @@ class Interceptors {
         // its sort of hook... (but not in component).
         axios.interceptors.request.use(requestObject => {
             const token = authStore.getState().token;
+            console.log(token);
             if (token) {
                 requestObject.headers.Authorization = `Bearer ${token}`;
             }

@@ -1,5 +1,5 @@
 import Joi from "joi";
-import DTO from '../../models/vacations/dto'
+import DTO from '../../models/vacations/dto';
 
 export const addVacationValidator = Joi.object<DTO> ({
     id: Joi.string().max(36).uuid().optional(),
