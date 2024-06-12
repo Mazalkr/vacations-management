@@ -1,8 +1,8 @@
 class Vacation {  
     public id?: string;
     public destination?: string;
-    public startDate?: Date;
-    public endDate?: Date;
+    public startDate?: Date | string;  // I add string for display it in EDIT FORM.
+    public endDate?: Date | string;
     public price?: number;
     public description?: string;
     // public imageName?: string;

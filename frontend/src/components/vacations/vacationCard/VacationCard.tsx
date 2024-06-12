@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 // 1) first create interface of the props.
 interface VacationCardProps {
     vacation: Vacation;
+    deleteVacation: Function;
 }
 
 // 2) use the props in the 'child element'
@@ -31,8 +32,8 @@ function VacationCard(props: VacationCardProps): JSX.Element {
                 <br/>
                 price: {formatPrice(props.vacation.price)}
                 <br/>
-                <NavLink to={'/vacations/add'}><button>Edit</button></NavLink>
-                {/* <button onClick={() => }>Delete</button> */}
+                <NavLink to={`/vacations/edit/${props.vacation.id}`}><button>Edit</button></NavLink>
+                <button onClick={() => (props.deleteVacation(props.vacation.id))}>Delete</button>
                 
             </div>
 			

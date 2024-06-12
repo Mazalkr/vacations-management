@@ -9,7 +9,8 @@ export const addVacationValidator = Joi.object<DTO> ({
     endDate: Joi.date().required(),
     // endDate: Joi.date().min('startDate').required(),
     price: Joi.number().min(1).max(10000).required(),
-    description: Joi.string().regex(/^\w+(?:\s+\w+)*$/).min(2).required(),
+    // description: Joi.string().regex(/^\w+(?:\s+\w+)*$/).min(2).required(),
+    description: Joi.string().pattern(/^[a-zA-Z',.\s]+$/).min(2).required(),
     // imageName: Joi.string().alphanum().min(2).required(),  // remove it! 
     image: Joi.object({
         mimetype: Joi.string().valid('image/jpg', 'image/jpeg', 'image/png')   // check if this file is jpg/jpeg/png
@@ -27,7 +28,8 @@ export const patchVacationValidator = Joi.object<DTO> ({
     // startDate: Joi.date().min('now'),
     // endDate: Joi.date().min('startDate'),
     price: Joi.number().min(1).max(10000),
-    description: Joi.string().regex(/^\w+(?:\s+\w+)*$/).min(2),
+    description: Joi.string().min(2),  // I removed .regex(/^\w+(?:\s+\w+)*$/)
+    // description: Joi.string().pattern(/^[a-zA-Z',.\s]+$/).min(2),  // I removed .regex(/^\w+(?:\s+\w+)*$/)
     // imageName: Joi.string().alphanum().min(2), // remove it!
     image: Joi.object({
         mimetype: Joi.string().valid('image/jpg', 'image/jpeg', 'image/png')   // check if this file is jpg/jpeg/png

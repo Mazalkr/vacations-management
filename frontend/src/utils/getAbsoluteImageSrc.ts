@@ -6,6 +6,7 @@ function getAbsoluteImageSrc(src: string | undefined): string {
     if (!src) return '';
     
     const originalUrl = new URL(src); // URL() --> reconstruct a string
+    // return `${appConfig.baseUrl}${originalUrl.pathname}`;
     return `${appConfig.baseUrl}${originalUrl.pathname}`;
     // developer:
     // http://localhost:3030/something.jpg

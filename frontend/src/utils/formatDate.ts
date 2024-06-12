@@ -1,4 +1,4 @@
-export default function formatDate(date: Date | undefined): string {
+export default function formatDate(date: Date | undefined | string): string {
     // console.log(date);
     const stringDate = (date as Date).toString();
     const fullDate = stringDate.split('T')[0];

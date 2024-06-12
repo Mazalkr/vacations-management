@@ -34,6 +34,21 @@ function List(): JSX.Element {
 
     }, []);
 
+    async function deleteCardVacation(id: string | undefined) {
+        if(!id) return;
+
+        if(window.confirm('Are you sure you want to delete this vacation?')) {
+            try {
+                await vacationsService.remove(id);
+                const vacations = await vacationsService.getAll();
+                setVacations(vacations);
+                notify.success(`deleted vacation with id ${id}`);
+            } catch (err) {
+                notify.error(err);
+            }
+        }
+    }
+
     return (
         <div className="List">
             <br/>
@@ -66,7 +81,7 @@ function List(): JSX.Element {
                 </tbody>
             </table> */}
 
-            {vacations.map(v => <VacationCard key={v.id} vacation={v}/>)}
+            {vacations.map(v => <VacationCard key={v.id} vacation={v} deleteVacation={deleteCardVacation}/>)}
 
 
 
