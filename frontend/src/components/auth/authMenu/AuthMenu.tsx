@@ -15,6 +15,7 @@ function AuthMenu(): JSX.Element {
     // };
 
     const [user, setUser] = useState<User>();
+    // const [token, setToken] = useState<string>('');
 
     const navigate = useNavigate();
 
@@ -22,7 +23,9 @@ function AuthMenu(): JSX.Element {
         // INIT the token the 1st time the component is mounted:
         const token = authStore.getState().token;
         if(token) {
-            const user = jwtDecode<{user: User}>(token).user;  
+            // console.log(token);
+            const user = jwtDecode<{user: User}>(token).user; 
+            console.log(`user with token: ${user}`); 
             // 'jwtDecode' decode the JWT (token) and extract the User details: firstName & lastName.
             // decode all the object user and extract just the 'user'.
             setUser(user);
@@ -33,7 +36,9 @@ function AuthMenu(): JSX.Element {
             const token = authStore.getState().token;
             if(token) {
                 const user = jwtDecode<{user: User}>(token).user; 
-                console.log(`user with token: ${user}`);
+                console.log(`user with token: ${{ user }}`);
+                console.log(`token: ${token}`);
+                // setToken(token);
                 setUser(user);
             } else {
                 // if we logout so we need to reset the user data:
@@ -43,7 +48,6 @@ function AuthMenu(): JSX.Element {
 
         return unsubscribe;
     }, []);
-
 
     function logout() {
         auth.logout();

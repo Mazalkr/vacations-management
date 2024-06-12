@@ -25,8 +25,9 @@ function Menu(): JSX.Element {
         <div className="Menu">
             <NavLink to="/home">Home</NavLink>
             {/* only when the user logged in he can access the vacations: */}
-            {isUserLoggedIn && <NavLink to="/vacations">Vacations</NavLink>}
-            {/* <NavLink to="/lorem-ipsums/add">Add LoremIposum</NavLink> */}
+            {/* {isUserLoggedIn && <NavLink to="/vacations">Vacations</NavLink>} */}
+            <NavLink to="/vacations">Vacations</NavLink>
+            <NavLink to="/vacations/add">Add Vacation</NavLink>
             <NavLink to="/about">About</NavLink>
         </div>
     );

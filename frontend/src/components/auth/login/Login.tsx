@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { authStore } from "../../../redux/AuthState";
 
 function Login(): JSX.Element {
+
     const { register, handleSubmit } = useForm<LoginModel>();
 
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ function Login(): JSX.Element {
     useEffect(() => {
         const token = authStore.getState().token;
         if(token) {
-            notify.error('You are already logged in, please don\'t login again');  // to show ' inside a string --> add before \
+            notify.error('You are already logged in');  
             navigate('/vacations');
         }
     }, [])

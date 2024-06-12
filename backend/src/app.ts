@@ -15,13 +15,14 @@ import enforceAuth from "./middlewares/enforce-auth";
 
 const server = express();
 server.use(cors());   // allow all the servers permissions to use the backend server. 
-server.use(authentication);  // check who is the user, and update his jwt if there is any changes.
+// server.use(authentication);  // check who is the user, and update his jwt if there is any changes.
 server.use(userLogger);  // log what the user/guest doing
 server.use(express.json()); 
 server.use(expressFileUpload());  // if its multipart form, this middleware will activated. good for uploading images.
 
 server.use('/api', authRouter);
-server.use('/api/vacations', enforceAuth, vacationsRouter);  // 'enforceAuth'- instead we can write it in routers -> vacations.
+server.use('/api/vacations', vacationsRouter);  // 'enforceAuth'- instead we can write it in routers -> vacations.
+// server.use('/api/vacations', enforceAuth, vacationsRouter);  // 'enforceAuth'- instead we can write it in routers -> vacations.
 server.use('/images', express.static(path.resolve(config.get<string>('app.images.path'))));
 // server.use('/api/vacations', vacationsRouter);  
 // server.use('/images', express.static('src/assets/images'));
