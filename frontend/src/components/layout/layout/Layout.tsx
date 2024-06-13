@@ -1,3 +1,4 @@
+import Spinner from '../../common/spinner/Spinner';
 import Home from '../../home/home/Home';
 import Header from '../header/Header';
 import Menu from '../menu/Menu';
