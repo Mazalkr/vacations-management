@@ -5,7 +5,7 @@ import Vacation from "../../../models/Vacation";
 import vacationsService from "../../../services/Vacations";
 import { useEffect, useState } from "react";
 import { idText } from "typescript";
-import getAbsoluteImageSrc from "../../../utils/getAbsoluteImageSrc";
+// import getAbsoluteImageSrc from "../../../utils/getAbsoluteImageSrc";
 import notify from "../../../services/Notify";
 
 function Edit(): JSX.Element {
@@ -104,12 +104,13 @@ function Edit(): JSX.Element {
                 <br/>
 
                 <label>Description:</label>
-                <input type="text" {...register('description', {
+                <br/>
+                <textarea {...register('description', {
                     required: {
                         value: true,
                         message: 'Description is a required field'
                     }
-                })} />
+                })} /><br/>
                 <span className="error">{formState.errors.description?.message}</span>
                 <br/>
 

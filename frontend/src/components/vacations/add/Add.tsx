@@ -43,13 +43,13 @@ function Add(): JSX.Element {
                 <span className="error">{formState.errors.destination?.message}</span>
                 <br/>
 
-                <label>Description:</label>
-                <input type="text" {...register('description', {
+                <label>Description:</label> <br/>
+                <textarea {...register('description', {
                     required: {
                         value: true,
                         message: 'Description is a required field'
                     }
-                })} />
+                })} /><br/>
                 <span className="error">{formState.errors.description?.message}</span>
                 <br/>
 
