@@ -76,6 +76,13 @@ function Add(): JSX.Element {
                     required: {
                         value: true,
                         message: 'Start date is a required field'
+                    },
+                    validate: value => {
+                        if (!value) return 'Start date is a required field';
+                        const startDate = new Date(value);
+                        const today = new Date();
+                        // console.log(`today: ${today}, you choose: ${startDate}`)
+                        return startDate >= today || 'Please select a date from today onwards';
                     }
                 })} />
                 <span className="error">{formState.errors.startDate?.message}</span>
