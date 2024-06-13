@@ -34,6 +34,33 @@ function List(): JSX.Element {
 
     }, []);
 
+    async function allVacations() {
+        try {
+            const vacations = await vacationsService.getAll();
+            setVacations(vacations);
+        } catch (err) {
+            notify.error(err);
+        }
+    }
+
+    async function futureVacations() {
+        try {
+            const vacations = await vacationsService.getFutureVacations();
+            setVacations(vacations);
+        } catch (err) {
+            notify.error(err);
+        }
+    }
+
+    async function activeVacations() {
+        try {
+            const vacations = await vacationsService.getActiveVacations();
+            setVacations(vacations);
+        } catch (err) {
+            notify.error(err);
+        }
+    }
+
     async function deleteCardVacation(id: string | undefined) {
         if(!id) return;
 
@@ -81,14 +108,15 @@ function List(): JSX.Element {
                 </tbody>
             </table> */}
 
+            <button onClick={allVacations}>All vacations</button>
+            <button onClick={futureVacations}>Future vacations</button>
+            <button onClick={activeVacations}>Active vacations</button>
+            <br/>
+
             {vacations.map(v => <VacationCard key={v.id} vacation={v} deleteVacation={deleteCardVacation}/>)}
 
-
-
-
         </div>
-
-        
+       
     );
 }
 
