@@ -23,7 +23,7 @@ function AuthMenu(): JSX.Element {
         // INIT the token the 1st time the component is mounted:
         const token = authStore.getState().token;
         if(token) {
-            // console.log(token);
+            console.log(token);
             const user = jwtDecode<{user: User}>(token).user; 
             console.log(`user with token: ${user}`); 
             // 'jwtDecode' decode the JWT (token) and extract the User details: firstName & lastName.
@@ -52,6 +52,7 @@ function AuthMenu(): JSX.Element {
     function logout() {
         auth.logout();
         notify.success('logged out successfully');
+        navigate('/login');  // WHY IT DOESN'T WORKING?
     }
 
     return (

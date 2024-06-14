@@ -32,6 +32,8 @@ function VacationCard(props: VacationCardProps): JSX.Element {
                 <br/>
                 price: {formatPrice(props.vacation.price)}
                 <br/>
+                followers: 
+                <br/>
                 <NavLink to={`/vacations/edit/${props.vacation.id}`}><button>Edit</button></NavLink>
                 <button onClick={() => (props.deleteVacation(props.vacation.id))}>Delete</button>
                 

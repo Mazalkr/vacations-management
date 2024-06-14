@@ -49,7 +49,7 @@ export const getActiveVacations =  async (req: Request, res: Response, next: Nex
 export const add =  async (req: Request, res: Response, next: NextFunction) => {
     try {
         const newVacation = await getModel().add(req.body);
-        res.status(StatusCodes.CREATED).json(newVacation); // the status code in postman will be: "201 Created".
+        res.status(StatusCodes.CREATED).json(getImageUrl(newVacation)); // the status code in postman will be: "201 Created".
     } catch (err) {
         next(err);
     }
@@ -60,7 +60,7 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
         const id = req.params.id;
         const updatedVacation = {...req.body, id};
         const vacation = await getModel().update(updatedVacation);
-        res.json(vacation);
+        res.json(getImageUrl(vacation));
         // res.json(convertProductToImageUrl(vacation));  // for image
     } catch (err) {
         next(err);
@@ -73,7 +73,7 @@ export const patch = async (req: Request, res: Response, next: NextFunction) => 
         const existingVacation = await getModel().getOne(req.params.id);
         const updatedVacation = {...existingVacation, ...req.body};
         const vacation = await getModel().update(updatedVacation);
-        res.json(vacation);
+        res.json(getImageUrl(vacation));
         // res.json(convertProductToImageUrl(product));  // for image
     } catch (err) {
         next(err);

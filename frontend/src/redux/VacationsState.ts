@@ -32,11 +32,17 @@ export interface VacationsAction {
 }
 
 // 4. Reducer():
+// why reducer? it gets the changes on the global state, and it need to return just ONE thing --> the new state.
 export function vacationsReducer(currentState = new VacationsState(), action: VacationsAction): VacationsState {
     // currentState = new VacationsState() --> 
     // new because if it's the first time we upload the app, no one already create new VacationsState, so we create it.
-    const newState = {...currentState};  // this is called cloning (שכפול).
+
+    const newState = {...currentState};  // this is called cloning (שכפול). 
+    //I don't make the changes directly on the current state, first I clone it to 'new state',
+    // I return it, and redux will change the global state.
     // const newState = currentState; // in that case every change in 'newState' affect on the data in 'currentState'.
+    // בצורה הזאת אנחנו כאילו שומרים את הכתובת שבזיכרון של המצב העכשווי בתוך המצב החדש, 
+    // ואז כל שינוי שנעשה במצב החדש יגולם גם במצב העכשווי
 
     // reduce commands:
     switch(action.type) {
@@ -61,6 +67,7 @@ export function vacationsReducer(currentState = new VacationsState(), action: Va
     }
 
     return newState;
+    // I return the new state (clone of current state) to REDUX, it will change the current based on that. 
 }
 
 // 5. Store (אחסון):

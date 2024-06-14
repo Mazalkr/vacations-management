@@ -80,7 +80,7 @@ function Edit(): JSX.Element {
             vacation.id = vacationId;
             
             const updatedVacation = await vacationsService.edit(vacation);
-            notify.success(`updated the vacation to ${updatedVacation.destination}`);
+            notify.success(`The vacation to ${updatedVacation.destination} updated successfully`);
             // navigate(`/products/details/${updatedProduct.id}`);
             navigate(`/vacations`);
         } catch (err) {

@@ -17,17 +17,20 @@ class Vacations {
     //     return vacations;
     // }
 
+    // getAll with redux:
     public async getAll(): Promise<Vacation[]> {
 
         // GET the vacations from REDUX:
         let vacations = vacationsStore.getState().vacations;
 
         if (vacations.length === 0) {
-            // GET the vacations from remote server if the array vacations[] in vacationsStore is empty:
+            // GET the vacations from remote server if the array vacations[] in vacationsStore (from redux) is empty:
             const response = await axios.get<Vacation[]>(appConfig.vacationsUrl);
         
             // EXTRACT the data from the response:
             vacations = response.data;
+
+            // AFTER WE GET THE DATA FROM THE SERVER WE WANT TO INFORM REDUX TO UPDATE HER STATE.
 
             // INFORM the redux to load new data:
             // create an action to set the vacations into the state,
@@ -53,6 +56,7 @@ class Vacations {
     //     return vacation;
     // }
 
+    // getOne with redux:
     public async getOne(id: string): Promise<Vacation | undefined> {
         // GET the products from REDUX:
         let vacations = vacationsStore.getState().vacations;
@@ -100,6 +104,7 @@ class Vacations {
     //     return addedVacation;
     // }
 
+    // add with redux:
     public async add(vacation: Vacation): Promise<Vacation> {
         // How to overcome the fact that when the user upload an image file it undefined:
         // the image file defined as binary (mostly gibberish), and POST automatically work with JSON format.
@@ -114,6 +119,10 @@ class Vacations {
         const response = await axios.post<Vacation>(appConfig.vacationsUrl, vacation, options);
         
         const addedVacation = response.data;
+
+        // REDUX: here its not like getAll(), 
+        // here we first- add the new vacation to the server, 
+        // and after- inform to redux to update his store 
 
         // create an AddVacation action for redux:
         const action: VacationsAction = {
@@ -132,10 +141,11 @@ class Vacations {
     //     await axios.delete(`${appConfig.vacationsUrl}/${id}`);
     // }
 
+    // remove (delete) with redux:
     public async remove(id: string): Promise<void> {
         await axios.delete(`${appConfig.vacationsUrl}/${id}`);
 
-        // we need to do the redux after we delete it from the server.
+        // REDUX- we need to inform redux after we delete it from the server.
 
         // create an DeleteVacation action for redux:
         const action: VacationsAction = {
@@ -161,6 +171,7 @@ class Vacations {
     //     return updatedVacation;
     // }
 
+    // edit (update) with redux:
     public async edit(vacation: Vacation): Promise<Vacation> {
         const options = {
             headers: {
@@ -185,6 +196,7 @@ class Vacations {
 
         return updatedVacation;
     }
+
 }
 
 const vacations = new Vacations();

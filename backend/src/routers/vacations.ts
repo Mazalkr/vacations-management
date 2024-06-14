@@ -11,7 +11,7 @@ import enforceAuth from "../middlewares/enforce-auth";
 
 const router = Router();
 
-// router.use(enforceAuth);
+router.use(enforceAuth);
 
 router.get('/', getAll);
 // router.get('/images/:image', getAbsoluteImageSrc);  // CONSIDER TO DELETE, you have already one in app.ts

@@ -5,7 +5,7 @@ function Header(): JSX.Element {
     return (
         <div className='Header'>
             <h1>Vacations Tags</h1>
-            {/* <AuthMenu /> */}
+            <AuthMenu />
         </div>
     );
 }

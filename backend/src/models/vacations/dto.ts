@@ -9,4 +9,5 @@ export default interface DTO {
     description: string,
     imageName: string,
     image: UploadedFile
+    imageUrl: string
 }

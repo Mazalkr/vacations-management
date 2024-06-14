@@ -12,7 +12,6 @@ import { vacationsStore } from "../../../redux/VacationsState";
 import Spinner from "../../common/spinner/Spinner";
 // import RandomImageSource from '../../../../../backend/images/09719cc5-87be-4663-a2bc-acfb01b8aa67.jpg'
 
-
 function List(): JSX.Element {
 
     // we need to use 'useState' because the data on the products is async and all the other commands are sync...
@@ -20,12 +19,16 @@ function List(): JSX.Element {
 
     // we need to use 'useEffect' to avoid the refresh & re-render every time the vacations data is updated...
     useEffect(() => {
+        console.log('useEffect')
         vacationsService.getAll()
-            .then(vacationsFromServer => setVacations(vacationsFromServer))
+            .then(vacationsFromServer => setVacations([...vacationsFromServer]))
             .catch(error => notify.error(error));
 
+
+        // REDUX:
         // if there is any changes on vacationsStore (REDUX) --> get the new state of data:
         const unsubscribe = vacationsStore.subscribe(() => {
+            console.log('vacations store has been modified!');
             setVacations([...vacationsStore.getState().vacations]);  
             // with spread operator '[...productStore]' we're making a clone of 'productStore',
             // and by that every change that we'll do on the clone wont effect on the original 'productStore'. 
@@ -37,8 +40,8 @@ function List(): JSX.Element {
 
     async function allVacations() {
         try {
-            const vacations = await vacationsService.getAll();
-            setVacations(vacations);
+            const allVacations = await vacationsService.getAll();
+            setVacations([...allVacations]);
         } catch (err) {
             notify.error(err);
         }
@@ -46,8 +49,8 @@ function List(): JSX.Element {
 
     async function futureVacations() {
         try {
-            const vacations = await vacationsService.getFutureVacations();
-            setVacations(vacations);
+            const futureVacations = await vacationsService.getFutureVacations();
+            setVacations([...futureVacations]);
         } catch (err) {
             notify.error(err);
         }
@@ -55,8 +58,8 @@ function List(): JSX.Element {
 
     async function activeVacations() {
         try {
-            const vacations = await vacationsService.getActiveVacations();
-            setVacations(vacations);
+            const activeVacations = await vacationsService.getActiveVacations();
+            setVacations([...activeVacations]);
         } catch (err) {
             notify.error(err);
         }
@@ -68,8 +71,8 @@ function List(): JSX.Element {
         if(window.confirm('Are you sure you want to delete this vacation?')) {
             try {
                 await vacationsService.remove(id);
-                const vacations = await vacationsService.getAll();
-                setVacations(vacations);
+                const updatedVacations = await vacationsService.getAll();
+                setVacations([...updatedVacations]);
                 notify.success(`deleted vacation with id ${id}`);
             } catch (err) {
                 notify.error(err);
@@ -82,36 +85,10 @@ function List(): JSX.Element {
             <br/>
             <br/>
 
-            {/* <img src={RandomImageSource}/> */}
-
-            {/* <table>
-                <thead>
-                    <tr>
-                        <th>destination</th>
-                        <th>description</th>
-                        <th>start date</th>
-                        <th>end date</th>
-                        <th>price</th>
-                        <th>image name</th>
-                        <th>image</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {vacations.map(vacation => <tr key={vacation.id}>
-                        <td>{vacation.destination}</td>
-                        <td>{vacation.description}</td>
-                        <td>{formatDate(vacation.startDate)}</td>
-                        <td>{formatDate(vacation.endDate)}</td>
-                        <td>{formatPrice(vacation.price)}</td>
-                        <td>{vacation.imageName}</td>
-                        <td><img src={vacation.imageName ? `${appConfig.imagesUrl}/${vacation.imageName}` : ''}/></td>
-                    </tr>)}
-                </tbody>
-            </table> */}
-
             <button onClick={allVacations}>All vacations</button>
             <button onClick={futureVacations}>Future vacations</button>
             <button onClick={activeVacations}>Active vacations</button>
+            <br/>
             <br/>
 
             {vacations.length === 0 && <Spinner/>}
