@@ -4,6 +4,7 @@ import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import config from 'config';
 import createHttpError, { Unauthorized }from "http-errors";
 import getImageUrl from "../../utils/getImageUrl";
+import { json2csv } from 'json-2-csv';
 
 // table with number of followers for each vacation 
 export const getAll =  async (req: Request, res: Response, next: NextFunction) => {
@@ -14,6 +15,34 @@ export const getAll =  async (req: Request, res: Response, next: NextFunction) =
         next(err);
     }
 }
+
+// CSV - download a csv (excel file):
+export const sendCSV =  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const followersPerVacations = await getModel().getAll();
+        // res.json(followersPerVacations); // I dont do that because in that way I send JSON format.
+       res.setHeader('Content-Type', 'text/csv');  // I want to send the user a text-csv, so I declare on that in the header.
+       // in that way it will download automatically in the user computer a csv file, which I can open in EXCEL.
+       res.setHeader('Content-Disposition', 'attachment;filename=vacations.csv');  
+       // Disposition --> where to locate the content? download an attachment with specific file name: 'vacations.csv'.
+       const csv = json2csv(followersPerVacations, {});  // json2csv(data, options)
+       /*
+        in postman I will get:
+            id,destination,numberOfFollowers
+            1,Israel,3
+            2,Jerusalem,5
+
+        and I can see the headers: Content-Type, Content-Disposition.
+       */
+       
+       res.send(csv);
+       
+    } catch (err) {
+        next(err);
+    }
+}
+
+
 
 // number of followers by vacation id. 
 export const countAllByVacation =  async (req: Request, res: Response, next: NextFunction) => {

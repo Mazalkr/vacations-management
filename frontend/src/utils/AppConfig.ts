@@ -10,6 +10,7 @@ class AppConfig {
     public futureVacationsUrl = `${this.vacationsUrl}/future`;
     public activeVacationsUrl = `${this.vacationsUrl}/active`;
     public imagesUrl = `${this.vacationsUrl}/images`;
+    public csvUrl = `${this.vacationsUrl}/csv`;
 
     // followers url:
     public followersUrl = `${this.baseUrl}/followers`;

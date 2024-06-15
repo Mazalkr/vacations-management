@@ -1,5 +1,6 @@
 import Model from "./model";
-import DTO from './dto';
+import FollowerDTO from './follower-dto';
+import CsvDTO from './csv-dto';
 import VacationDTO from '../vacations/dto';
 import { OkPacketParams, RowDataPacket } from "mysql2";
 import query from "../../db/mysql";
@@ -8,9 +9,9 @@ import config from "config";
 class Follower implements Model {
 
     // table with number of followers for each vacation (for CSV report)
-    public async getAll(): Promise<DTO[]> {
+    public async getAll(): Promise<CsvDTO[]> {
         const followers = await query(`
-            SELECT      v.id, v.destination, COUNT(f.userId) AS numberOfFollowers
+            SELECT      v.id AS vacationId, v.destination, COUNT(f.userId) AS numberOfFollowers
             FROM        vacations AS v
             LEFT JOIN   followers AS f ON f.vacationId = v.id
             GROUP BY    v.id
@@ -92,7 +93,7 @@ class Follower implements Model {
     // user id = ee1b38d3-2004-11ef-9a1b-9323f668247f
     // vacation id = 67989cd7-200a-11ef-9a1b-9323f668247f
 
-    public async getOne(userId: string): Promise<DTO> {
+    public async getOne(userId: string): Promise<FollowerDTO> {
         const follower = (await query(`
             SELECT  userId,
                     vacationId
@@ -102,7 +103,7 @@ class Follower implements Model {
         return follower;
     }
 
-    public async follow(follower: DTO): Promise<DTO> {
+    public async follow(follower: FollowerDTO): Promise<FollowerDTO> {
         const { userId, vacationId } = follower;
         await query(`
             INSERT INTO followers(userId, vacationId)
@@ -111,7 +112,7 @@ class Follower implements Model {
         return this.getOne(userId);
     }
 
-    public async unFollow(follower: DTO): Promise<boolean> {
+    public async unFollow(follower: FollowerDTO): Promise<boolean> {
         const { userId, vacationId } = follower;
         const result: OkPacketParams = await query(`
             DELETE FROM followers

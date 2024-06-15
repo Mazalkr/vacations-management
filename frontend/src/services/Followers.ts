@@ -7,32 +7,6 @@ import { FollowersAction, FollowersActionType, followersStore } from "../redux/F
 
 class Followers {
 
-    // table with number of followers for every vacation 
-    public async getAll(): Promise<FollowerModel[]> {
-
-        // GET the followers from REDUX:
-        let followers = followersStore.getState().followers;
-
-        if (followers.length === 0) {
-            // GET the followers from remote server if the array followers[] in followersStore is empty:
-            const response = await axios.get<FollowerModel[]>(appConfig.followersUrl);
-        
-            // EXTRACT the data from the response:
-            followers = response.data;
-
-            // INFORM the redux to load new data:
-            const action: FollowersAction = {
-                type: FollowersActionType.SetFollowers,
-                payload: followers
-            }
-
-            // send this action to 'redux':
-            followersStore.dispatch(action);  // dispatch --> send the parameter 'action' to 'productsStore' in REDUX.
-        }
-        
-        return followers;
-    }  
-
     // number of followers by vacation id. 
     public async countAllByVacation(vacationId: string): Promise<number> {
         const response = await axios.get<number>(`${appConfig.followersByVacationsUrl}/${vacationId}`);

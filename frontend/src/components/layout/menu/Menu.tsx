@@ -28,6 +28,7 @@ function Menu(): JSX.Element {
             {/* {isUserLoggedIn && <NavLink to="/vacations">Vacations</NavLink>} */}
             <NavLink to="/vacations">Vacations</NavLink>
             <NavLink to="/vacations/add">Add Vacation</NavLink>
+            <NavLink to="/vacations/report">Report</NavLink>
             <NavLink to="/about">About</NavLink>
         </div>
     );

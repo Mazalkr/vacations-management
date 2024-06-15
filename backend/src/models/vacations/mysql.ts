@@ -1,6 +1,6 @@
 import Model from "./model";
 import DTO from './dto';
-import FollowerDTO from '../followers/dto';
+// import FollowerDTO from '../followers/follower-dto';
 import { OkPacketParams } from "mysql2";
 import query from "../../db/mysql";
 import config from "config";
