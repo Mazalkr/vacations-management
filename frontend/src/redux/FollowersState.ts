@@ -1,9 +1,11 @@
 import { createStore } from "redux";
 import Follower from "../models/Follower";
+import Csv from "../models/Csv";
 
 // 1. Global State for followers:
 export class FollowersState {
     public followers: Follower[] = []; 
+    public followersPerVacation: Csv[] = [];
 }
 
 // 2. Action Type:
@@ -15,7 +17,7 @@ export enum FollowersActionType {
 }
 
 // 3. Action object:
-export type FollowerPayLoad = Follower[] | Follower | number | string; // CONSIDER TO DELETE NUMBER! 
+export type FollowerPayLoad = Follower[] | Follower | Csv[] | number | string; // CONSIDER TO DELETE NUMBER! 
 export interface FollowersAction {
     type: FollowersActionType,  // set/delete = follow/unfollow
     payload?: FollowerPayLoad, 
@@ -28,7 +30,7 @@ export function followersReducer(currentState = new FollowersState(), action: Fo
     // reduce commands:
     switch(action.type) {
         case FollowersActionType.SetFollowers:  // payload here will be an array of followers: Follower[].
-            newState.followers = action.payload as Follower[];
+            newState.followersPerVacation = action.payload as Csv[];
             break;
         case FollowersActionType.AddFollow:  
             const singleFollower = action.payload as Follower;

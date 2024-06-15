@@ -9,26 +9,26 @@ class Csv {
     public async getAllFollowersPerVacation(): Promise<CsvModel[]> {
 
         // GET the followers from REDUX:
-        let followers = followersStore.getState().followers;
+        let followersPerVacation = followersStore.getState().followersPerVacation;
 
-        if (followers.length === 0) {
+        if (followersPerVacation.length === 0) {
             // GET the followers from remote server if the array followers[] in followersStore is empty:
             const response = await axios.get<CsvModel[]>(appConfig.followersPerVacationUrl);
         
             // EXTRACT the data from the response:
-            followers = response.data;
+            followersPerVacation = response.data;
 
             // INFORM the redux to load new data:
             const action: FollowersAction = {
                 type: FollowersActionType.SetFollowers,
-                payload: followers
+                payload: followersPerVacation
             }
 
             // send this action to 'redux':
             followersStore.dispatch(action);  // dispatch --> send the parameter 'action' to 'productsStore' in REDUX.
         }
         
-        return followers;
+        return followersPerVacation;
     }  
 
     // CSV- download report file of number of followers per vacation:

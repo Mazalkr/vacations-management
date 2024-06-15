@@ -19,7 +19,7 @@ function List(): JSX.Element {
 
     // we need to use 'useEffect' to avoid the refresh & re-render every time the vacations data is updated...
     useEffect(() => {
-        console.log('useEffect')
+        console.log('useEffect from LIST')
         vacationsService.getAll()
             .then(vacationsFromServer => setVacations([...vacationsFromServer]))
             .catch(error => notify.error(error));
