@@ -9,7 +9,7 @@ import config from "config";
 class Follower implements Model {
 
     // table with number of followers for each vacation (for CSV report)
-    public async getAll(): Promise<CsvDTO[]> {
+    public async getAllFollowersPerVacation(): Promise<CsvDTO[]> {
         const followers = await query(`
             SELECT      v.id AS vacationId, v.destination, COUNT(f.userId) AS numberOfFollowers
             FROM        vacations AS v

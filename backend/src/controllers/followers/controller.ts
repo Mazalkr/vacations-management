@@ -7,9 +7,9 @@ import getImageUrl from "../../utils/getImageUrl";
 import { json2csv } from 'json-2-csv';
 
 // table with number of followers for each vacation 
-export const getAll =  async (req: Request, res: Response, next: NextFunction) => {
+export const getAllFollowersPerVacation =  async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const followers = await getModel().getAll();
+        const followers = await getModel().getAllFollowersPerVacation();
         res.json(followers);
     } catch (err) {
         next(err);
@@ -19,7 +19,7 @@ export const getAll =  async (req: Request, res: Response, next: NextFunction) =
 // CSV - download a csv (excel file):
 export const sendCSV =  async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const followersPerVacations = await getModel().getAll();
+        const followersPerVacations = await getModel().getAllFollowersPerVacation();
         // res.json(followersPerVacations); // I dont do that because in that way I send JSON format.
        res.setHeader('Content-Type', 'text/csv');  // I want to send the user a text-csv, so I declare on that in the header.
        // in that way it will download automatically in the user computer a csv file, which I can open in EXCEL.
@@ -36,13 +36,11 @@ export const sendCSV =  async (req: Request, res: Response, next: NextFunction) 
        */
        
        res.send(csv);
-       
+
     } catch (err) {
         next(err);
     }
 }
-
-
 
 // number of followers by vacation id. 
 export const countAllByVacation =  async (req: Request, res: Response, next: NextFunction) => {

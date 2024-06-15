@@ -7,7 +7,7 @@ import addImageToBody from "../middlewares/add-image-to-body";
 import uploadImage from "../middlewares/upload-image";
 import enforceAdmin from "../middlewares/enforce-admin";
 import enforceAuth from "../middlewares/enforce-auth";
-import { sendCSV } from "../controllers/followers/controller";
+import { getAllFollowersPerVacation, sendCSV } from "../controllers/followers/controller";
 // import getAbsoluteImageSrc from "../middlewares/getAbsoluteImageSrc";
 
 const router = Router();
@@ -15,7 +15,8 @@ const router = Router();
 router.use(enforceAuth);
 
 router.get('/', getAll);
-router.get('/csv', sendCSV);  // download CSV. 
+router.get('/report', getAllFollowersPerVacation);  // number of followers for every vacation. for SCV and bar chart. 
+router.get('/report/csv', sendCSV);  // download CSV. 
 // router.get('/images/:image', getAbsoluteImageSrc);  // CONSIDER TO DELETE, you have already one in app.ts
 router.get('/active', getActiveVacations);
 router.get('/future', getFutureVacations);
