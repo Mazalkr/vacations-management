@@ -18,26 +18,26 @@ interface VacationCardProps {
 // 2) use the props in the 'child element'
 function VacationCard(props: VacationCardProps): JSX.Element {
     return (
-        <div className="VacationCard">
-            <div>
-                {/* <img src={props.vacation.imageName ? `${appConfig.imagesUrl}/${props.vacation.imageName}` : ''}/> */}
-                <img src={props.vacation.imageUrl ? props.vacation.imageUrl : ''} />
-                <br/>
-                {props.vacation.destination}
-                <br/>
-                {/* <div>{props.vacation.startDate ? formatDate(props.vacation.startDate) : ''} - {props.vacation.endDate ? formatDate(props.vacation.endDate): ''} */}
-                <div>{formatDate(props.vacation.startDate)} - {formatDate(props.vacation.endDate)}
-                </div>
-                description: {props.vacation.description}
-                <br/>
-                price: {formatPrice(props.vacation.price)}
-                <br/>
-                followers: 
-                <br/>
-                <NavLink to={`/vacations/edit/${props.vacation.id}`}><button>Edit</button></NavLink>
-                <button onClick={() => (props.deleteVacation(props.vacation.id))}>Delete</button>
+        <div className="VacationCard col-md-12 col-md-8 col-lg-6 col-xl-3">
                 
+            <div className="card border-secondary mb-3 h-100" style={{ width: '18rem' }}>
+                <img src={props.vacation.imageUrl ? props.vacation.imageUrl : ''} className="card-img-top" alt="destination" />
+                <div className="card-body">
+                    <h3 className="card-title">{props.vacation.destination}</h3>
+                    <h6 className="card-text">{formatDate(props.vacation.startDate)} - {formatDate(props.vacation.endDate)}</h6>
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item"><p className="card-text">{props.vacation.description}</p></li>
+                        <li className="list-group-item"><h6 className="card-text">Price: {formatPrice(props.vacation.price)}</h6></li>
+                        <li className="list-group-item"><h6 className="card-text">Followers:</h6></li>
+                        <li className="list-group-item">
+                            <NavLink to={`/vacations/edit/${props.vacation.id}`}><button className="btn btn-primary">Edit</button></NavLink>
+                            <button className="btn btn-danger" onClick={() => (props.deleteVacation(props.vacation.id))}>Delete</button>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
+                
 			
         </div>
     );

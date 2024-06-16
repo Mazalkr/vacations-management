@@ -1,8 +1,12 @@
-.List img {
-  width: 100px;
+.List {
+  height: 100%;
 }
 
-.List table {
+/* .List img {
+  width: 100px;
+} */
+
+/* .List table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
@@ -28,4 +32,4 @@
   text-align: left;
   background-color: #04aa6d;
   color: white;
-}
+} */

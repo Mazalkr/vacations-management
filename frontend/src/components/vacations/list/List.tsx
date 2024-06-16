@@ -93,7 +93,12 @@ function List(): JSX.Element {
 
             {vacations.length === 0 && <Spinner/>}
 
-            {vacations.map(v => <VacationCard key={v.id} vacation={v} deleteVacation={deleteCardVacation}/>)}
+            <div className="container">
+                <div className="row">
+                    {vacations.map(v => <VacationCard key={v.id} vacation={v} deleteVacation={deleteCardVacation}/>)}
+                </div>
+            </div>
+
 
         </div>
        
