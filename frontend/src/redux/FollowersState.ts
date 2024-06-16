@@ -29,7 +29,7 @@ export function followersReducer(currentState = new FollowersState(), action: Fo
 
     // reduce commands:
     switch(action.type) {
-        case FollowersActionType.SetFollowers:  // payload here will be an array of followers: Follower[].
+        case FollowersActionType.SetFollowers:  // payload here will be an array of csv: Csv[].
             newState.followersPerVacation = action.payload as Csv[];
             break;
         case FollowersActionType.AddFollow:  
