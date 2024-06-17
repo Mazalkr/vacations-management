@@ -1,7 +1,16 @@
 .Menu {
 	display: flex;
     flex-direction: row;
-    gap: 20px;
-    padding-top: 20px;
+    height: 100%;
+    gap: 30px;
     justify-content: center;
+    align-items: center;  
+    
+    /* background-color: rgb(255, 252, 80); */
 }
+
+
+
+
+
+

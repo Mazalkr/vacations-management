@@ -43,8 +43,7 @@ function Report(): JSX.Element {
 
     return (
         <div className="Report">
-            <button onClick={downloadCsv}>Download report</button>
-
+            
             <h2>Vacations Report</h2>
 
             <Bar 
@@ -54,7 +53,7 @@ function Report(): JSX.Element {
                         {
                             label: 'Followers',
                             data: followersPerVacation.map(data => data.numberOfFollowers),
-                            backgroundColor: '#219C90',
+                            backgroundColor: '#00FFD1',
                             borderColor: 'white',
                             borderWidth: 1,
                             borderRadius: 8
@@ -68,8 +67,10 @@ function Report(): JSX.Element {
                         }
                     }
                 }}
-            
             />
+            <br/>
+
+            <button className="btn btn-outline-primary" onClick={downloadCsv}>Download report</button>
 
         </div>
     );

@@ -1,4 +1,12 @@
 .Report {
     margin: 20px;
-	
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;	
+}
+
+.Report h2 {
+    text-align: center;
+    color: #2a9ea9;
 }

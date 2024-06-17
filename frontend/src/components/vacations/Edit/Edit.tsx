@@ -93,29 +93,27 @@ function Edit(): JSX.Element {
             <h2>Edit Vacation</h2>
             <form onSubmit={handleSubmit(submitVacationData)}>
 
-                <label>Destination:</label>
-                <input type="text" {...register('destination', {
+                <label className="form-label">Destination:</label>
+                <input className="form-control" type="text" {...register('destination', {
                     required: {
                         value: true,
                         message: 'Destination is a required field'
                     }
                 })} />
                 <span className="error">{formState.errors.destination?.message}</span>
-                <br/>
 
-                <label>Description:</label>
+                <label className="form-label">Description:</label>
                 <br/>
-                <textarea {...register('description', {
+                <textarea className="form-control" {...register('description', {
                     required: {
                         value: true,
                         message: 'Description is a required field'
                     }
                 })} /><br/>
                 <span className="error">{formState.errors.description?.message}</span>
-                <br/>
 
-                <label>Price:</label>
-                <input type="number" step="0.01" {...register('price', {
+                <label className="form-label">Price:</label>
+                <input className="form-control" type="number" step="0.01" {...register('price', {
                     required: {
                         value: true,
                         message: 'Price is a required field'
@@ -130,20 +128,18 @@ function Edit(): JSX.Element {
                     }
                 })} />
                 <span className="error">{formState.errors.price?.message}</span>
-                <br/>
 
-                <label>From:</label>
-                <input type="date" {...register('startDate', {
+                <label className="form-label">From:</label>
+                <input className="form-control" type="date" {...register('startDate', {
                     required: {
                         value: true,
                         message: 'Start date is a required field'
                     }
                 })} />
                 <span className="error">{formState.errors.startDate?.message}</span>
-                <br/>
 
-                <label>To:</label>
-                <input type="date" {...register('endDate', {
+                <label className="form-label">To:</label>
+                <input className="form-control" type="date" {...register('endDate', {
                     required: {
                         value: true,
                         message: 'End date is a required field'
@@ -158,18 +154,17 @@ function Edit(): JSX.Element {
                     }
                 })} />
                 <span className="error">{formState.errors.endDate?.message}</span>
-                <br/>
 
-                <label>Image:</label>
-                <input type="file" accept="image/*" {...register('image')} />
+                <label className="form-label">Image:</label>
+                <input className="form-control" type="file" accept="image/*" {...register('image')} />
 
                 {/* the component 'ImageWatched' for replace the image if the user upload other image */}
                 <DisplayImage control={control} />
 
-                <button>Update</button>
+                <button className="btn btn-primary">Update</button>
             </form>
 
-            <NavLink to={'/vacations'}><button>Cancel</button></NavLink>
+            <NavLink to={'/vacations'}><button className="btn btn-outline-primary">Cancel</button></NavLink>
 
         </div>
     );

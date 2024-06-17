@@ -36,19 +36,19 @@ function Signup(): JSX.Element {
         <div className="Signup">
             <h2>Signup:</h2>
             <form onSubmit={handleSubmit(submitUserData)}>
-                <label>First name:</label> 
-                <input type="text" {...register('firstName')}/> 
-                <label>Last name:</label> 
-                <input type="text" {...register('lastName')}/> 
-                <label>Email:</label> 
-                <input type="email" {...register('email')}/> 
-                <label>Password:</label> 
-                <input type="password" {...register('password')}/> 
-                <button>Sign Up</button>
+                <label className="form-label">First name:</label> 
+                <input className="form-control" type="text" {...register('firstName')}/> 
+                <label className="form-label">Last name:</label> 
+                <input className="form-control" type="text" {...register('lastName')}/> 
+                <label className="form-label">Email:</label> 
+                <input className="form-control" type="email" {...register('email')}/> 
+                <label className="form-label">Password:</label> 
+                <input className="form-control" type="password" {...register('password')}/> 
+                <button className="btn btn-primary">Sign Up</button>
             </form>
-            <div>
+            <div className="navLink">
                 already a member?
-                <NavLink to="/login">Login</NavLink>
+                <NavLink to="/login"> Login</NavLink>
             </div>
 			
         </div>

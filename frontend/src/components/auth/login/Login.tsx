@@ -36,15 +36,15 @@ function Login(): JSX.Element {
         <div className="Login">
             <h2>Login:</h2>
             <form onSubmit={handleSubmit(submitLoginData)}>
-                <label>Email:</label> 
-                <input type="email" {...register('email')}/> 
-                <label>Password:</label> 
-                <input type="password" {...register('password')}/> 
-                <button>Login</button>
+                <label className="form-label">Email:</label> 
+                <input className="form-control" type="email" {...register('email')}/> 
+                <label className="form-label">Password:</label> 
+                <input className="form-control" type="password" {...register('password')}/> 
+                <button className="btn btn-primary">Login</button>
             </form>
-            <div>
+            <div className="navLink">
                 don't have account?
-                <NavLink to="/signup">Sign Up</NavLink>
+                <NavLink to="/signup"> Sign Up</NavLink>
             </div>
 			
         </div>

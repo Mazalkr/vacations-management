@@ -18,7 +18,7 @@ interface VacationCardProps {
 // 2) use the props in the 'child element'
 function VacationCard(props: VacationCardProps): JSX.Element {
     return (
-        <div className="VacationCard col-md-12 col-md-8 col-lg-6 col-xl-3">
+        <div className="VacationCard col">
                 
             <div className="card border-secondary mb-3 h-100" style={{ width: '18rem' }}>
                 <img src={props.vacation.imageUrl ? props.vacation.imageUrl : ''} className="card-img-top" alt="destination" />
