@@ -7,17 +7,15 @@ import List from "../../vacations/list/List";
 import Report from "../../vacations/report/Report";
 import Page404 from "../page404/Page404";
 import { Routes, Route, Navigate } from 'react-router-dom';
+
 function Routing(): JSX.Element {
     return (
         <Routes>
 
             <Route path="/signup" element={<Signup />} />
             
+            <Route path="/" element={<Login />} />
             <Route path="/login" element={<Login />} />
-
-            {/* to make the default page to 'home' we call the path: "/" */}
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Navigate to="/" />} />
 
             <Route path="/vacations" element={<List />} />
             <Route path="/vacations/add" element={<Add />} />

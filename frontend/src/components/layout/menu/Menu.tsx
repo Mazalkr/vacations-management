@@ -33,11 +33,9 @@ function Menu(): JSX.Element {
             <div className="container">
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid">
-                        <NavLink className="navbar-brand" to="/home">Home</NavLink>
-                        <NavLink className="navbar-brand active" to="/vacations">Vacations</NavLink>
+                        <NavLink className="navbar-brand" to="/vacations">Vacations</NavLink>
                         <NavLink className="navbar-brand" to="/vacations/add">Add Vacation</NavLink>
                         <NavLink className="navbar-brand" to="/vacations/report">Report</NavLink>
-                        <NavLink className="navbar-brand" to="/about">About</NavLink>
                     </div>
                 </nav>
             </div>

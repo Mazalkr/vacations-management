@@ -10,7 +10,6 @@ import appConfig from "../../../utils/AppConfig";
 import VacationCard from "../vacationCard/VacationCard";
 import { vacationsStore } from "../../../redux/VacationsState";
 import Spinner from "../../common/spinner/Spinner";
-// import RandomImageSource from '../../../../../backend/images/09719cc5-87be-4663-a2bc-acfb01b8aa67.jpg'
 
 function List(): JSX.Element {
 
@@ -95,9 +94,7 @@ function List(): JSX.Element {
                 </div>
             </div>
 
-
         </div>
-       
     );
 }
 
