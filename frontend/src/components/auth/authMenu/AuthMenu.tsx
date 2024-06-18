@@ -28,7 +28,7 @@ function AuthMenu(): JSX.Element {
             console.log(`user with token: ${user}`); 
             // 'jwtDecode' decode the JWT (token) and extract the User details: firstName & lastName.
             // decode all the object user and extract just the 'user'.
-            setUser(user);
+            setUser({...user});
         }
 
         // SUBSCRIBE the changes:
@@ -39,7 +39,7 @@ function AuthMenu(): JSX.Element {
                 console.log(`user with token: ${{ user }}`);
                 console.log(`token: ${token}`);
                 // setToken(token);
-                setUser(user);
+                setUser({...user});
             } else {
                 // if we logout so we need to reset the user data:
                 setUser(undefined);

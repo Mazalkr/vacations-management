@@ -12,11 +12,31 @@
 .Add h2 {
     text-align: center;
     color: #2a9ea9;
+    /* font-family: MathildeFont;
+    font-size: 70px;
+    font-weight: 900; */
 }
 
-.Add input,
+.Add .form-label {
+    font-family: MathildeFont;
+    font-size: 50px;
+    font-weight: 500;
+    margin: 0px;
+}
+
+.Add input {
+    width: 100%;
+    box-sizing: border-box;
+    /* margin-bottom: 20px; */
+}
+
 .Add button {
     width: 100%;
     box-sizing: border-box;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+}
+
+@font-face {
+    font-family: MathildeFont;
+    src: url(../../../assets/fonts/mathilde.otf);
 }

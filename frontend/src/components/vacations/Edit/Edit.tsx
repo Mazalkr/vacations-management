@@ -109,7 +109,7 @@ function Edit(): JSX.Element {
                         value: true,
                         message: 'Description is a required field'
                     }
-                })} /><br/>
+                })} />
                 <span className="error">{formState.errors.description?.message}</span>
 
                 <label className="form-label">Price:</label>

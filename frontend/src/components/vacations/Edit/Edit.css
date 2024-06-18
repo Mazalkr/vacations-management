@@ -1,5 +1,5 @@
 .Edit img {
-    margin-bottom: 5px;
+    margin: 5px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -22,9 +22,33 @@
     color: #2a9ea9;
 }
 
-.Edit input,
+/* .Edit input,
 .Edit button {
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 20px;
+} */
+
+.Edit .form-label {
+    font-family: MathildeFont;
+    font-size: 50px;
+    font-weight: 500;
+    margin: 0px;
+}
+
+.Edit input {
+    width: 100%;
+    box-sizing: border-box;
+    /* margin-bottom: 20px; */
+}
+
+.Edit button {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
+
+@font-face {
+    font-family: MathildeFont;
+    src: url(../../../assets/fonts/mathilde.otf);
 }

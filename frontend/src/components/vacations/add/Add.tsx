@@ -48,7 +48,7 @@ function Add(): JSX.Element {
                         value: true,
                         message: 'Description is a required field'
                     }
-                })} /><br/>
+                })} />
                 <span className="error">{formState.errors.description?.message}</span>
 
                 <label className="form-label">Price:</label>
@@ -109,6 +109,7 @@ function Add(): JSX.Element {
                     }
                 })} />
                 <span className="error">{formState.errors.image?.message}</span>
+                <br/>
 
                 <button className="btn btn-primary">add</button>
             </form>

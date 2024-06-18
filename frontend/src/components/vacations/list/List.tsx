@@ -77,8 +77,6 @@ function List(): JSX.Element {
 
     return (
         <div className="List">
-            <br/>
-            <br/>
 
             <div className="selectContainer">
                 <label htmlFor="form-select" className="form-label">Filter by:</label>
