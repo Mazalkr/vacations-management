@@ -1,5 +1,5 @@
 import DTO from './dto';
-import FollowerDTO from '../followers/dto';
+import FollowerDTO from '../followers/follower-dto';
 
 
 export default interface Model {

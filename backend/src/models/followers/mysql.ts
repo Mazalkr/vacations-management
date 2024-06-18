@@ -1,6 +1,6 @@
 import Model from "./model";
 import FollowerDTO from './follower-dto';
-import CsvDTO from './csv-dto';
+import ReportDTO from './report-dto';
 import VacationDTO from '../vacations/dto';
 import { OkPacketParams, RowDataPacket } from "mysql2";
 import query from "../../db/mysql";
@@ -9,7 +9,7 @@ import config from "config";
 class Follower implements Model {
 
     // table with number of followers for each vacation (for CSV report)
-    public async getAllFollowersPerVacation(): Promise<CsvDTO[]> {
+    public async getAllFollowersPerVacation(): Promise<ReportDTO[]> {
         const followers = await query(`
             SELECT      v.id AS vacationId, v.destination, COUNT(f.userId) AS numberOfFollowers
             FROM        vacations AS v

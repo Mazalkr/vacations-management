@@ -1,9 +1,9 @@
 import FollowerDTO from './follower-dto';
-import CsvDTO from './csv-dto';
+import ReportDTO from './report-dto';
 import VacationDTO from '../vacations/dto';
 
 export default interface Model {
-    getAllFollowersPerVacation(): Promise<CsvDTO[]>;  // table with number of followers for every vacation 
+    getAllFollowersPerVacation(): Promise<ReportDTO[]>;  // table with number of followers for every vacation 
     countAllByVacation(vacationId: string): Promise<number>;  // number of followers by vacation id. 
     getAllByUserFollowing(userId: string): Promise<VacationDTO[]>;  // vacations that the user is following. 
     getAllVacations(userId: string): Promise<VacationDTO[]>;  // include isFollowing and count of followers per vacation.

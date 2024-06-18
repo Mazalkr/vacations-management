@@ -1,19 +1,19 @@
 import axios from "axios";
-import CsvModel from "../models/Csv";
+import ReportModel from "../models/Report";
 import appConfig from "../utils/AppConfig";
 import { FollowersAction, FollowersActionType, followersStore } from "../redux/FollowersState";
 
 class Csv {
 
     // table with number of followers for every vacation 
-    public async getAllFollowersPerVacation(): Promise<CsvModel[]> {
+    public async getAllFollowersPerVacation(): Promise<ReportModel[]> {
 
         // GET the followers from REDUX:
         let followersPerVacation = followersStore.getState().followersPerVacation;
 
         if (followersPerVacation.length === 0) {
             // GET the followers from remote server if the array followers[] in followersStore is empty:
-            const response = await axios.get<CsvModel[]>(appConfig.followersPerVacationUrl);
+            const response = await axios.get<ReportModel[]>(appConfig.followersPerVacationUrl);
         
             // EXTRACT the data from the response:
             followersPerVacation = response.data;

@@ -1,7 +1,7 @@
 import "./Report.css";
 import { useEffect, useState } from "react";
-import csvService from "../../../services/Csv";
-import Csv from "../../../models/Csv";
+import reportService from "../../../services/Report";
+import ReportModel from "../../../models/Report";
 import notify from "../../../services/Notify";
 import { Bar } from 'react-chartjs-2';
 // I installed npm i react-chartjs-2 and chart.js:
@@ -15,11 +15,11 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 function Report(): JSX.Element { 
 
-    const [followersPerVacation, setFollowersPerVacation] = useState<Csv[]>([]);
+    const [followersPerVacation, setFollowersPerVacation] = useState<ReportModel[]>([]);
 
     useEffect(() => {
         console.log('useEffect from REPORT')
-        csvService.getAllFollowersPerVacation()
+        reportService.getAllFollowersPerVacation()
             .then(dataFromServer => setFollowersPerVacation([...dataFromServer]))
             .catch(error => notify.error(error))
         
@@ -35,7 +35,7 @@ function Report(): JSX.Element {
     // download CSV file:
     async function downloadCsv() {
         try {
-            await csvService.sendCSV();
+            await reportService.sendCSV();
         } catch (err) {
             notify.error(err);
         }

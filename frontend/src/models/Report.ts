@@ -1,7 +1,7 @@
-class Csv {
+class Report {
     public vacationId?: string;
     public destination?: string;
     public numberOfFollowers?: number;
 }
 
-export default Csv;
+export default Report;
