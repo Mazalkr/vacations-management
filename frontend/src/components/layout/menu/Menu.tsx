@@ -23,19 +23,13 @@ function Menu(): JSX.Element {
 
     return (
         <div className="Menu">
-            {/* <NavLink className="navBar" to="/home">Home</NavLink> */}
-            {/* only when the user logged in he can access the vacations: */}
-            {/* {isUserLoggedIn && <NavLink to="/vacations">Vacations</NavLink>} */}
-            {/* <NavLink className="navBar" to="/vacations">Vacations</NavLink> */}
-            {/* <NavLink className="navBar" to="/vacations/add">Add Vacation</NavLink> */}
-            {/* <NavLink className="navBar" to="/vacations/report">Report</NavLink> */}
-            {/* <NavLink className="navBar" to="/about">About</NavLink> */}
             <div className="container">
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid">
-                        <NavLink className="navbar-brand" to="/vacations">Vacations</NavLink>
-                        <NavLink className="navbar-brand" to="/vacations/add">Add Vacation</NavLink>
-                        <NavLink className="navbar-brand" to="/vacations/report">Report</NavLink>
+                        {/* only when the user logged in he can access the vacations: */}
+                        {isUserLoggedIn && <NavLink className="navbar-brand" to="/vacations">Vacations</NavLink>}
+                        {isUserLoggedIn && <NavLink className="navbar-brand" to="/vacations/add">Add Vacation</NavLink>}
+                        {isUserLoggedIn && <NavLink className="navbar-brand" to="/vacations/report">Report</NavLink>}
                     </div>
                 </nav>
             </div>
