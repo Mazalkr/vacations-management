@@ -1,5 +1,5 @@
 import "./List.css";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import notify from "../../../services/Notify";
 import vacationsService from "../../../services/Vacations";
 import Vacation from "../../../models/Vacation";
@@ -38,28 +38,23 @@ function List(): JSX.Element {
 
     }, []);
 
-    async function allVacations() {
+    async function filteredVacations(event: ChangeEvent<HTMLSelectElement>) {
+        const filterType = event.target.value;
         try {
-            const allVacations = await vacationsService.getAll();
-            setVacations([...allVacations]);
-        } catch (err) {
-            notify.error(err);
-        }
-    }
-
-    async function futureVacations() {
-        try {
-            const futureVacations = await vacationsService.getFutureVacations();
-            setVacations([...futureVacations]);
-        } catch (err) {
-            notify.error(err);
-        }
-    }
-
-    async function activeVacations() {
-        try {
-            const activeVacations = await vacationsService.getActiveVacations();
-            setVacations([...activeVacations]);
+            switch(filterType) {
+                case 'allVacations':
+                    const allVacations = await vacationsService.getAll();
+                    setVacations([...allVacations]);
+                    break;
+                case 'futureVacations':
+                    const futureVacations = await vacationsService.getFutureVacations();
+                    setVacations([...futureVacations]);
+                    break;
+                case 'activeVacations':
+                    const activeVacations = await vacationsService.getActiveVacations();
+                    setVacations([...activeVacations]);
+                    break;
+            }
         } catch (err) {
             notify.error(err);
         }
@@ -85,11 +80,14 @@ function List(): JSX.Element {
             <br/>
             <br/>
 
-            <button onClick={allVacations}>All vacations</button>
-            <button onClick={futureVacations}>Future vacations</button>
-            <button onClick={activeVacations}>Active vacations</button>
-            <br/>
-            <br/>
+            <div className="selectContainer">
+                <label htmlFor="form-select" className="form-label">Filter by:</label>
+                <select className="form-select" onChange={filteredVacations} defaultValue={'allVacations'}>
+                    <option value={'allVacations'}>All Vacations</option>
+                    <option value={'futureVacations'}>Future Vacations</option>
+                    <option value={'activeVacations'}>Active Vacations</option>
+                </select>
+            </div>
 
             {vacations.length === 0 && <Spinner/>}
 

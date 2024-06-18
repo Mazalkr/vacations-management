@@ -15,8 +15,3 @@
     grid-column: span 12;
     overflow: auto;
 }
-
-.Layout,
-.Layout>* {
-    /* border: 1px solid; */
-}

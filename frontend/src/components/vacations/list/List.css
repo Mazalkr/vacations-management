@@ -2,6 +2,19 @@
   height: 100%;
 }
 
+.List .form-select {
+  width: auto;
+  text-align: center;
+}
+
+.List .selectContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+}
+
+
 /* .List img {
   width: 100px;
 } */
