@@ -3,6 +3,9 @@ import "./VacationCard.css";
 import formatDate from '../../../utils/formatDate'
 import formatPrice from '../../../utils/formatPrice'
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { authStore } from "../../../redux/AuthState";
+import User from "../../../models/User";
 
 interface VacationCardProps {
     vacation: Vacation;
@@ -10,6 +13,19 @@ interface VacationCardProps {
 }
 
 function VacationCard(props: VacationCardProps): JSX.Element {
+
+    const [user, setUser] = useState<User>();
+
+    useEffect(() => {
+        setUser(authStore.getState().user); 
+        
+        const unsubscribe = authStore.subscribe(() => {
+            setUser(authStore.getState().user);
+        })
+        
+        return unsubscribe;
+    }, [])
+
     return (
         <div className="VacationCard col">
                 
@@ -21,11 +37,11 @@ function VacationCard(props: VacationCardProps): JSX.Element {
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item"><p className="card-text">{props.vacation.description}</p></li>
                         <li className="list-group-item"><h6 className="card-text">Price: {formatPrice(props.vacation.price)}</h6></li>
-                        <li className="list-group-item"><h6 className="card-text">Followers:</h6></li>
-                        <li className="list-group-item">
+                        {user?.roleId === 2 && <li className="list-group-item"><h6 className="card-text">Followers:</h6></li>}
+                        {user?.roleId === 3 && <li className="list-group-item">
                             <NavLink to={`/vacations/edit/${props.vacation.id}`}><button className="btn btn-primary">Edit</button></NavLink>
                             <button className="btn btn-danger" onClick={() => (props.deleteVacation(props.vacation.id))}>Delete</button>
-                        </li>
+                        </li>}
                     </ul>
                 </div>
             </div>

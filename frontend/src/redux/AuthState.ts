@@ -1,10 +1,17 @@
 import { createStore } from "redux";
+import User from "../../src/models/User";
+import { jwtDecode } from "jwt-decode";
 
 // 1. Global State:
 export class AuthState {
     public token: string = ''; // token = jwt (JSON Web Token).
+    public user: User = {};
     public constructor() {
         this.token = localStorage.getItem('token') || ''; 
+        if (this.token) {
+            const jwtPayload = jwtDecode(this.token) 
+            this.user = (jwtPayload as any).user;
+        }
     }
 }
 
@@ -31,10 +38,13 @@ export function authReducer(currentState = new AuthState(), action: AuthAction):
         case AuthActionType.Login: 
             newState.token = action.payload as string;
             console.log(`our jwt is ${action.payload}`);
+            const jwtPayload = jwtDecode(newState.token);
+            newState.user = (jwtPayload as any).user;
             localStorage.setItem('token', newState.token);
             break;
         case AuthActionType.Logout:
             newState.token = '';
+            newState.user = {};
             localStorage.removeItem('token');
             break;
     }
