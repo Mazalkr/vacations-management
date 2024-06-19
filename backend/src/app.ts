@@ -24,15 +24,12 @@ server.use('/api', authRouter);
 server.use('/api/vacations', vacationsRouter);  // 'enforceAuth'- instead we can write it in routers -> vacations.
 // server.use('/api/vacations', enforceAuth, vacationsRouter);  // 'enforceAuth'- instead we can write it in routers -> vacations.
 server.use('/images', express.static(path.resolve(config.get<string>('app.images.path'))));
-// server.use('/api/vacations', vacationsRouter);  
-// server.use('/images', express.static('src/assets/images'));
-// server.use('/images', express.static(path.resolve(config.get<string>('app.images.path'))));  // DELETE IT???
 server.use('/api/followers', followersRouter);
 
-// special middleware for 'not found' error:
+// Special middleware for 'not found' error:
 server.use(notFound);
 
-// error middlewares:
+// Error middlewares:
 // server.use(errorLogger);  // CONSIDER TO DELETE!
 server.use(errorHandler);
 

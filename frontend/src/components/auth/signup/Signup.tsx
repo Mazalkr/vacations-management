@@ -15,7 +15,6 @@ function Signup(): JSX.Element {
 
     async function submitUserData(signupModel: SignupModel): Promise<void> {
         try {
-            // service:
             await auth.signup(signupModel);
             notify.success('You have been successfully signed up');
             navigate('/vacations');
@@ -27,7 +26,7 @@ function Signup(): JSX.Element {
     useEffect(() => {
         const token = authStore.getState().token;
         if(token) {
-            notify.error('You are already signed up');  // to show ' inside a string --> add before \
+            notify.error('You are already signed up');
             navigate('/');
         }
     }, [])

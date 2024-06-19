@@ -5,7 +5,7 @@ import { FollowersAction, FollowersActionType, followersStore } from "../redux/F
 
 class Csv {
 
-    // table with number of followers for every vacation 
+    // Number of followers for every vacation 
     public async getAllFollowersPerVacation(): Promise<ReportModel[]> {
 
         // GET the followers from REDUX:
@@ -24,8 +24,8 @@ class Csv {
                 payload: followersPerVacation
             }
 
-            // send this action to 'redux':
-            followersStore.dispatch(action);  // dispatch --> send the parameter 'action' to 'productsStore' in REDUX.
+            // send the parameter 'action' to 'productsStore' in REDUX:
+            followersStore.dispatch(action); 
         }
         
         return followersPerVacation;
@@ -34,14 +34,6 @@ class Csv {
     // CSV- download report file of number of followers per vacation:
     public async sendCSV(): Promise<void> {
 
-        // Summary:
-        // The code fetches a CSV file from a specified URL using Axios.
-        // It creates a temporary URL (url) for the Blob data received.
-        // It dynamically creates an anchor (<a>) element, sets it up for downloading with the specified filename (vacations.csv),
-        // and triggers the download.
-        // After the download is initiated, it removes the dynamically created anchor element from the document.
-
-        // Setting the response type to 'blob' (appropriate for binary data like files)
         const response = await axios.get(appConfig.csvUrl, {
             responseType: 'blob'
         });

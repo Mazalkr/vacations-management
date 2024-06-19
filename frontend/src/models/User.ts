@@ -7,10 +7,10 @@ class User {
     public roleId?: number;
 }
 
-export default User;
-
 export enum Roles {
     GUEST = 1,
     USER = 2,
     ADMIN = 3
 }
+
+export default User;

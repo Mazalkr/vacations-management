@@ -4,7 +4,7 @@ import { createStore } from "redux";
 export class AuthState {
     public token: string = ''; // token = jwt (JSON Web Token).
     public constructor() {
-        this.token = localStorage.getItem('token') || ''; // by using the constructor we can init this variable.
+        this.token = localStorage.getItem('token') || ''; 
     }
 }
 
@@ -27,9 +27,8 @@ export function authReducer(currentState = new AuthState(), action: AuthAction):
     const newState = {...currentState};
 
     switch (action.type) {
-        // 'Signup' and 'Login' have the same commands, so we united them:
-        case AuthActionType.Signup:  // payload here is the token. 
-        case AuthActionType.Login: // payload here is the token.
+        case AuthActionType.Signup:  
+        case AuthActionType.Login: 
             newState.token = action.payload as string;
             console.log(`our jwt is ${action.payload}`);
             localStorage.setItem('token', newState.token);
@@ -43,5 +42,5 @@ export function authReducer(currentState = new AuthState(), action: AuthAction):
     return newState;
 }
 
-// 5. Store (אחסון):
+// 5. Store:
 export const authStore = createStore(authReducer);

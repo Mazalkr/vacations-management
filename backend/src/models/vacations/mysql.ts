@@ -1,13 +1,10 @@
 import Model from "./model";
 import DTO from './dto';
-// import FollowerDTO from '../followers/follower-dto';
 import { OkPacketParams } from "mysql2";
 import query from "../../db/mysql";
-import config from "config";
 
 class Vacation implements Model {
 
-    // public async getAll(offset: number): Promise<DTO[]> {
     public async getAll(): Promise<DTO[]> {
         const vacations = await query(`
             SELECT      id,
@@ -20,10 +17,8 @@ class Vacation implements Model {
             FROM        vacations
             ORDER BY    startDate ASC;
         `);
-        // `, [offset]);
         return vacations;
     }
-    // LIMIT   ? OFFSET 10
 
     public async getOne(id: string): Promise<DTO> {
         const vacation = (await query(`

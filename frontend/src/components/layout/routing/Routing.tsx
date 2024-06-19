@@ -1,6 +1,5 @@
 import Login from "../../auth/login/Login";
 import Signup from "../../auth/signup/Signup";
-import Home from "../../home/home/Home";
 import Edit from "../../vacations/Edit/Edit";
 import Add from "../../vacations/add/Add";
 import List from "../../vacations/list/List";
@@ -21,6 +20,7 @@ function Routing(): JSX.Element {
             <Route path="/vacations/add" element={<Add />} />
             <Route path="/vacations/edit/:vacationId" element={<Edit />} />
             <Route path="/vacations/report" element={<Report />} />
+            
             <Route path="*" element={<Page404 />} />
 
         </Routes>

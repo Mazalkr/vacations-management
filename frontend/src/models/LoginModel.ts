@@ -1,4 +1,4 @@
-// login refer to credentials.
+// Login refer to credentials.
 
 class Login {
     public email?: string;

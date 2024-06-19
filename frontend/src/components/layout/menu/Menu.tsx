@@ -5,15 +5,11 @@ import { authStore } from "../../../redux/AuthState";
 
 function Menu(): JSX.Element {
 
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);  // we init this in false
-        // because we want to forbidden access to everything accept login/signup if the user hasn't logged in.
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);  
 
         useEffect(() => {
             setIsUserLoggedIn(authStore.getState().token !== '');  // true/false 
-            // other way:
-            // const flag: boolean = authStore.getState().token !== ''; // true/false
-            // setIsUserLoggedIn(flag);  
-
+            
             const unsubscribe = authStore.subscribe(() => {
                 setIsUserLoggedIn(authStore.getState().token !== '');
             })

@@ -4,13 +4,10 @@ import reportService from "../../../services/Report";
 import ReportModel from "../../../models/Report";
 import notify from "../../../services/Notify";
 import { Bar } from 'react-chartjs-2';
-// I installed npm i react-chartjs-2 and chart.js:
-// import { Chart as ChartJS } from 'chart.js'
-// import Chart from 'chart.js/auto';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 import { followersStore } from "../../../redux/FollowersState";
 
-// activate the chart.js:
+// Activate the chart.js:
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 function Report(): JSX.Element { 
@@ -32,7 +29,7 @@ function Report(): JSX.Element {
         return unsubscribe;  
     }, []);
 
-    // download CSV file:
+    // Download CSV file:
     async function downloadCsv() {
         try {
             await reportService.sendCSV();

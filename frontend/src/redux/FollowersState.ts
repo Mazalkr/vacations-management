@@ -9,7 +9,6 @@ export class FollowersState {
 }
 
 // 2. Action Type:
-// what types of actions do we want to enable on the data itself. (here we want CRUD actions).
 export enum FollowersActionType { 
     SetFollowers = 'SetFollowers', 
     AddFollow = 'AddFollow',
@@ -17,29 +16,28 @@ export enum FollowersActionType {
 }
 
 // 3. Action object:
-export type FollowerPayLoad = Follower[] | Follower | Report[] | number | string; // CONSIDER TO DELETE NUMBER! 
+export type FollowerPayLoad = Follower[] | Follower | Report[] | number | string;
 export interface FollowersAction {
-    type: FollowersActionType,  // set/delete = follow/unfollow
+    type: FollowersActionType,
     payload?: FollowerPayLoad, 
 }
 
 // 4. Reducer():
 export function followersReducer(currentState = new FollowersState(), action: FollowersAction): FollowersState {
-    const newState = {...currentState};  // this is called cloning (שכפול).
+    const newState = {...currentState};
 
     // reduce commands:
     switch(action.type) {
-        case FollowersActionType.SetFollowers:  // payload here will be an array of csv: Csv[].
+        case FollowersActionType.SetFollowers: 
             newState.followersPerVacation = action.payload as Report[];
             break;
         case FollowersActionType.AddFollow:  
             const singleFollower = action.payload as Follower;
             newState.followers.push(singleFollower);
             break;
-        case FollowersActionType.DeleteFollow:  // payload here will be vacationId: string.
+        case FollowersActionType.DeleteFollow:  
             const vacationId = action.payload as string;
             const indexToDelete = newState.followers.findIndex(follower => follower.vacationId === vacationId);
-            // findIndex --> return the index if it find something or return -1 if it didn't find.
             if (indexToDelete !== -1) newState.followers.splice(indexToDelete, 1);  
             break;
     }
@@ -47,5 +45,5 @@ export function followersReducer(currentState = new FollowersState(), action: Fo
     return newState;
 }
 
-// 5. Store (אחסון):
+// 5. Store:
 export const followersStore = createStore(followersReducer);

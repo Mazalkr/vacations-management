@@ -4,11 +4,10 @@ import ReportDTO from './report-dto';
 import VacationDTO from '../vacations/dto';
 import { OkPacketParams, RowDataPacket } from "mysql2";
 import query from "../../db/mysql";
-import config from "config";
 
 class Follower implements Model {
 
-    // table with number of followers for each vacation (for CSV report)
+    // Number of followers for each vacation (for CSV report):
     public async getAllFollowersPerVacation(): Promise<ReportDTO[]> {
         const followers = await query(`
             SELECT      v.id AS vacationId, v.destination, COUNT(f.userId) AS numberOfFollowers
@@ -19,7 +18,7 @@ class Follower implements Model {
         return followers;
     }
 
-    // number of followers by vacation id.
+    // Number of followers by vacation id:
     public async countAllByVacation(vacationId: string): Promise<number> {
         const result: RowDataPacket = await query(`
             SELECT      COUNT(*) AS numberOfFollowers
@@ -30,7 +29,7 @@ class Follower implements Model {
         return followersCounter;
     }
 
-    // get array of vacations that the user is following. CONSIDER TO MOVE IT TO VACATIONS....
+    // All the vacations that the user is following:
     public async getAllByUserFollowing(userId: string): Promise<VacationDTO[]> {
         const userFollowingVacations = await query(`
             SELECT  v.id,
@@ -47,10 +46,8 @@ class Follower implements Model {
         `, [userId]);
         return userFollowingVacations;
     }
-    // example for userId: "7241aaf3-1fec-11ef-9a1b-9323f668247f"
 
-    // all vacations include isFollowing and count of followers per vacation:
-    // show all the vacations, include those the user NOT following:
+    // All vacations include isFollowing and number of followers per vacation:
     public async getAllVacations(userId: string): Promise<VacationDTO[]> {
         const vacations = await query(`
             SELECT		v.id,
@@ -69,29 +66,6 @@ class Follower implements Model {
         `, [userId]);
         return vacations;
     }
-    // example for userId: "ee1b38d3-2004-11ef-9a1b-9323f668247f" 
-
-    // CONSIDER TO DELETE!
-    // I need userId and vacationId     
-    // public async isUserFollowing(follower: DTO): Promise<boolean> {
-    //     const { userId, vacationId } = follower;
-    //     const result: RowDataPacket = await query(`
-    //         SELECT COUNT(*) AS	isFollowing
-    //         FROM				followers
-    //         WHERE				userId = ? AND vacationId = ?            
-    //     `, [userId, vacationId]);
-    //     const isFollowing: boolean = result[0].numberOfFollowers;
-    //     return isFollowing;
-    // }
-
-    // examples:
-    // IS following: --> 1
-    // user id = 46e5433e-228b-11ef-8143-287dfa7042f9
-    // vacation id = cf9e21b5-2004-11ef-9a1b-9323f668247f
-
-    // is NOT following: --> 0
-    // user id = ee1b38d3-2004-11ef-9a1b-9323f668247f
-    // vacation id = 67989cd7-200a-11ef-9a1b-9323f668247f
 
     public async getOne(userId: string): Promise<FollowerDTO> {
         const follower = (await query(`

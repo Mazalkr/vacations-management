@@ -23,7 +23,7 @@ class User implements Model {
     }
 
     public async login(credentials: CredentialsDTO): Promise<UserDTO> {
-        const { email, password } = credentials;  // if we didn't write this destructuring we need to write upstream credentials.username / credentials.password
+        const { email, password } = credentials; 
         const user = (await query(`
             SELECT  id, 
                     firstName, 

@@ -4,38 +4,31 @@ import { Control, useForm, useWatch } from "react-hook-form";
 import Vacation from "../../../models/Vacation";
 import vacationsService from "../../../services/Vacations";
 import { useEffect, useState } from "react";
-import { idText } from "typescript";
-// import getAbsoluteImageSrc from "../../../utils/getAbsoluteImageSrc";
 import notify from "../../../services/Notify";
 
 function Edit(): JSX.Element {
 
     const params = useParams();
-    const vacationId = params.vacationId || '';  // CONVERT TO NUMBER??? OR ADD 'as string'???
+    const vacationId = params.vacationId || ''; 
 
     const navigate = useNavigate();
 
     const { register, handleSubmit, setValue, control, formState, getValues } = useForm<Vacation>();
 
-    // add the image in the update form:
+    // Add the image in the update form:
     const [src, setSrc] = useState<string>('');
 
-    // 'DisplayImage' is mini component here
+    // 'DisplayImage' is mini component:
     function DisplayImage({ control }: { control: Control<Vacation>}) {
-        // by useWatch 'imageSrc' will change every time the input name 'image' will change.
         const imageSrc = useWatch({
             control,
             name: 'image',
         })
         
-        // if there has been changes in 'imageSrc' so change the src image in the form.
         if (imageSrc) {
             const file = ((imageSrc as unknown as FileList)[0]);
             if(file) {
                 const newSrc = window.URL.createObjectURL(file);
-                console.log(newSrc);
-                // we ask from the browser to create src by using 'URL.createObjectURL(file)' because a security problem.
-                // the browser as default isn't allow the programmer an access to the whole path of the file.
                 return <img src={newSrc}/>
             }
         }
@@ -52,36 +45,29 @@ function Edit(): JSX.Element {
         }
     }
     
-    // setValue is a react func that similar to the JS command 'document.getElementById...'.
-    // it set a value in the input of the form.
-    // it doesn't know to do that with images....
     useEffect(() => {
         vacationsService.getOne(vacationId)
             .then(vacationsFromServer => {
-                setValue('destination', vacationsFromServer?.destination);  // we add '?' because it could be undefined (after we updated getOne() to redux).
+                setValue('destination', vacationsFromServer?.destination);  
                 setValue('description', vacationsFromServer?.description);
                 setValue('price', vacationsFromServer?.price);
                 console.log(vacationsFromServer?.startDate);
                 setValue('startDate', displayDate(vacationsFromServer?.startDate));
                 setValue('endDate', displayDate(vacationsFromServer?.endDate));
-                // setSrc(getAbsoluteImageSrc(vacationsFromServer?.imageUrl) || '');
                 setSrc(vacationsFromServer?.imageUrl || '');
             })
             .catch(err => notify.error(err));
     }, []);
 
-    // to get the id of the vacation I want to update:
     async function submitVacationData(vacation: Vacation) {
         console.log(vacation);
         try {
             vacation.image = (vacation.image as unknown as FileList)[0];
 
-            // in that way we can use the vacation.id in the func 'editVacation' in 'services' folder.  
             vacation.id = vacationId;
             
             const updatedVacation = await vacationsService.edit(vacation);
             notify.success(`The vacation to ${updatedVacation.destination} updated successfully`);
-            // navigate(`/products/details/${updatedProduct.id}`);
             navigate(`/vacations`);
         } catch (err) {
             notify.error(err);

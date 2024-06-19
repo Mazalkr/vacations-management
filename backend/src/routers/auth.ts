@@ -1,4 +1,4 @@
-import express, { Router } from "express"; 
+import { Router } from "express"; 
 import validate from "../middlewares/input-validation";
 import { signupValidator, loginValidator } from "../controllers/auth/validator";
 import { signup, login } from "../controllers/auth/controller";

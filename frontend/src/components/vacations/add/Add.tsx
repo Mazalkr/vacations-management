@@ -8,19 +8,15 @@ import notify from "../../../services/Notify";
 function Add(): JSX.Element {
 
     const { register, handleSubmit, formState, getValues } = useForm<Vacation>();
-    // 'useForm' declare that the form going to submit data as model of Vacation.
 
     const navigate = useNavigate();
 
     async function addVacation(vacation: Vacation) {
         try {
-            // How to extract the image from file list:
-            // to overcome the fact that the image is type FileList (an array of multiple images):
-            // we can define it first as unknown/any & after that we define it as FileList in index [0]:
             vacation.image = (vacation.image as unknown as FileList)[0];
 
             const addedVacation = await vacationsService.add(vacation);
-            notify.success(`added a new vacation with id ${addedVacation.id}`);
+            notify.success(`added a new vacation`);
 
             navigate('/vacations');
         } catch (err) {

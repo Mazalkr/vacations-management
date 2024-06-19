@@ -14,20 +14,15 @@ declare global {
     }
 }
 
-// authentication: "tell me who's the user!", in that way we load the request who is the user.
+// authentication: "tell me who's the user!".
 export default async function authentication (req: Request, res: Response, next: NextFunction) { 
-    const header = req.header('authorization'); // we expect it to look like: 'Bearer mcjdkfhfdbvfdbvfdbsd'.
-    if (!header) return next();  // CONSIDER TO CHANGE: NEXT() OR CREATE AN ERROR? 
-    // ERROR EXAMPLE: next(createHttpError(Unauthorized('missing authorization header')));
+    const header = req.header('authorization'); 
+    if (!header) return next();  
     const token = header.split(' ')[1]; 
-    // this split by space (' ') --> create an array ['Bearer', 'mcjdkfhfdbvfdbvfdbsd'] --> take the 2nd element.
     try {
         const { user } = verify(token, config.get<string>('app.jwt.secret')) as JwtPayload;
-        // the jwt is changed after any change in the info of the user, 
-        // for example: if I changed his roleId --> the jwt will change, so in authentication I need to get the new jwt
-        // by fetching it from database:
-        const freshUser = await getModel().getOne(user.id);  // get the new JWT after changes in user details.
-        req.user = freshUser; // we want to load on the request the user parameter for analytics.
+        const freshUser = await getModel().getOne(user.id);  
+        req.user = freshUser; 
         return next();
     } catch (err) {
         next(createHttpError(Unauthorized(err.message || err)));

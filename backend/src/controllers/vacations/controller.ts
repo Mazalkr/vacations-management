@@ -1,9 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import getModel from "../../models/vacations/factory";
-import { StatusCodes, ReasonPhrases } from "http-status-codes";
-import config from 'config';
-import createHttpError, { Unauthorized }from "http-errors";
-import path from "path";
+import { StatusCodes } from "http-status-codes";
 import getImageUrl from '../../utils/getImageUrl'
 
 
@@ -15,16 +12,6 @@ export const getAll =  async (req: Request, res: Response, next: NextFunction) =
         next(err);
     }
 }
-
-// export const getAbsoluteImageSrc =  async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//         const imageName = req.params.image;
-//         const absolutePath = path.join(__dirname, '../../../images', imageName);
-//         res.sendFile(absolutePath);
-//     } catch (err) {
-//         next(err);
-//     }
-// }
 
 export const getFutureVacations =  async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -44,8 +31,6 @@ export const getActiveVacations =  async (req: Request, res: Response, next: Nex
     }
 }
 
-// don't forget to create: getAllByUserFollowing
-
 export const add =  async (req: Request, res: Response, next: NextFunction) => {
     try {
         const newVacation = await getModel().add(req.body);
@@ -61,20 +46,17 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
         const updatedVacation = {...req.body, id};
         const vacation = await getModel().update(updatedVacation);
         res.json(getImageUrl(vacation));
-        // res.json(convertProductToImageUrl(vacation));  // for image
     } catch (err) {
         next(err);
     }
 }
 
-// for 'patch' we used the function update() instead of creating new patch function:
 export const patch = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const existingVacation = await getModel().getOne(req.params.id);
         const updatedVacation = {...existingVacation, ...req.body};
         const vacation = await getModel().update(updatedVacation);
         res.json(getImageUrl(vacation));
-        // res.json(convertProductToImageUrl(product));  // for image
     } catch (err) {
         next(err);
     }
@@ -82,8 +64,8 @@ export const patch = async (req: Request, res: Response, next: NextFunction) => 
 
 export const remove =  async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const isDeleted = await getModel().delete(req.params.id); //params- in url will be after ':'.
-        if (isDeleted) return res.sendStatus(StatusCodes.NO_CONTENT);  // sendStatus to end this middleware
+        const isDeleted = await getModel().delete(req.params.id); 
+        if (isDeleted) return res.sendStatus(StatusCodes.NO_CONTENT);  
         res.status(StatusCodes.NOT_FOUND).json({success: false});  // 404
     } catch (err) {
         next(err);

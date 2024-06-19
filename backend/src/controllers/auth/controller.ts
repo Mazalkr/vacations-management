@@ -9,7 +9,7 @@ export const signup = async (req: Request, res: Response, next: NextFunction) =>
     try {
         const user = await getModel().signup(req.body);
         const jwt = generateJWT(user, config.get<string>('app.jwt.secret'), config.get<string>('app.jwt.expires'));
-        res.status(StatusCodes.CREATED).json({ jwt });  // we entered jwt between {} to convert this string to JSON.
+        res.status(StatusCodes.CREATED).json({ jwt });  
     } catch (err) {
         next(createHttpError(Unauthorized(ReasonPhrases.UNAUTHORIZED)));  // error 401
     }

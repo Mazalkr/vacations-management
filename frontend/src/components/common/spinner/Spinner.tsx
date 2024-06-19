@@ -1,4 +1,3 @@
-import "./Spinner.css";
 import loadingImageSource from '../../../assets/images/loading.gif'
 
 function Spinner(): JSX.Element {

@@ -21,19 +21,3 @@
     font-family: MathildeFont;
     src: url(../../../assets/fonts/mathilde.otf);
 }
-
-/* DELETE ALL THE FONTS (ALSO FROM THE FOLDER!) */
-@font-face {
-    font-family: RumRaisinRegularFont;
-    src: url(../../../assets/fonts/RumRaisin-Regular.ttf);
-}
-
-@font-face {
-    font-family: HonkRegularFont;
-    src: url(../../../assets/fonts/Honk-Regular.ttf);
-}
-
-@font-face {
-    font-family: HonkFont;
-    src: url(../../../assets/fonts/honk.ttf);
-}

@@ -8,7 +8,7 @@ const validate = (validator: Joi.ObjectSchema) => async (req: Request, res: Resp
         req.body = await validator.validateAsync(req.body, { 
             abortEarly: false 
         });   
-        return next(); // will activate the func 'add'.
+        return next(); 
     } catch (err) {
         if(err.isJoi) {  
             return next(createHttpError(BadRequest(err.message)));  

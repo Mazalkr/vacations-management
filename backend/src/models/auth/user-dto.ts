@@ -7,14 +7,6 @@ export default interface DTO extends CredentialsDTO {
     roleId: number
 }
 
-// method1- shahar:
-// export enum Roles {
-//     ADMIN = 1,
-//     USER = 2,
-//     GUEST = 3  // I add this....
-// }
-
-// method2- as the table I created in mySQL:
 export enum Roles {
     GUEST = 1,
     USER = 2,

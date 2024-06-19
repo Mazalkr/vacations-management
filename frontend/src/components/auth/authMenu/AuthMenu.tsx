@@ -9,25 +9,17 @@ import User from "../../../models/User";
 
 function AuthMenu(): JSX.Element {
 
-    // type User = {
-    //     firstName: string,
-    //     lastName: string
-    // };
-
     const [user, setUser] = useState<User>();
     // const [token, setToken] = useState<string>('');
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        // INIT the token the 1st time the component is mounted:
         const token = authStore.getState().token;
         if(token) {
             console.log(token);
             const user = jwtDecode<{user: User}>(token).user; 
             console.log(`user with token: ${user}`); 
-            // 'jwtDecode' decode the JWT (token) and extract the User details: firstName & lastName.
-            // decode all the object user and extract just the 'user'.
             setUser({...user});
         }
 
@@ -41,7 +33,6 @@ function AuthMenu(): JSX.Element {
                 // setToken(token);
                 setUser({...user});
             } else {
-                // if we logout so we need to reset the user data:
                 setUser(undefined);
             }
         });
@@ -52,7 +43,7 @@ function AuthMenu(): JSX.Element {
     function logout() {
         auth.logout();
         notify.success('logged out successfully');
-        navigate('/login');  // WHY IT DOESN'T WORKING?
+        navigate('/login');
     }
 
     return (
