@@ -11,18 +11,16 @@ import path from "path";
 import { errorLogger } from "./middlewares/error-logger";
 import authentication from "./middlewares/authentication";
 import userLogger from "./middlewares/user-logger";
-import enforceAuth from "./middlewares/enforce-auth";
 
 const server = express();
-server.use(cors());   // allow all the servers permissions to use the backend server. 
-server.use(authentication);  // check who is the user, and update his jwt if there is any changes.
-server.use(userLogger);  // log what the user/guest doing
+server.use(cors());   
+server.use(authentication);  
+server.use(userLogger);  
 server.use(express.json()); 
-server.use(expressFileUpload());  // if its multipart form, this middleware will activated. good for uploading images.
+server.use(expressFileUpload());  
 
 server.use('/api', authRouter);
 server.use('/api/vacations', vacationsRouter);  // 'enforceAuth'- instead we can write it in routers -> vacations.
-// server.use('/api/vacations', enforceAuth, vacationsRouter);  // 'enforceAuth'- instead we can write it in routers -> vacations.
 server.use('/images', express.static(path.resolve(config.get<string>('app.images.path'))));
 server.use('/api/followers', followersRouter);
 
@@ -30,7 +28,7 @@ server.use('/api/followers', followersRouter);
 server.use(notFound);
 
 // Error middlewares:
-// server.use(errorLogger);  // CONSIDER TO DELETE!
+// server.use(errorLogger); 
 server.use(errorHandler);
 
 export default server;
