@@ -51,7 +51,6 @@ function Edit(): JSX.Element {
                 setValue('destination', vacationsFromServer?.destination);  
                 setValue('description', vacationsFromServer?.description);
                 setValue('price', vacationsFromServer?.price);
-                console.log(vacationsFromServer?.startDate);
                 setValue('startDate', displayDate(vacationsFromServer?.startDate));
                 setValue('endDate', displayDate(vacationsFromServer?.endDate));
                 setSrc(vacationsFromServer?.imageUrl || '');
@@ -60,7 +59,6 @@ function Edit(): JSX.Element {
     }, []);
 
     async function submitVacationData(vacation: Vacation) {
-        console.log(vacation);
         try {
             vacation.image = (vacation.image as unknown as FileList)[0];
 

@@ -15,7 +15,6 @@ function Report(): JSX.Element {
     const [followersPerVacation, setFollowersPerVacation] = useState<ReportModel[]>([]);
 
     useEffect(() => {
-        console.log('useEffect from REPORT')
         reportService.getAllFollowersPerVacation()
             .then(dataFromServer => setFollowersPerVacation([...dataFromServer]))
             .catch(error => notify.error(error))

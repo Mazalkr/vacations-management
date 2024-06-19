@@ -17,9 +17,7 @@ function AuthMenu(): JSX.Element {
     useEffect(() => {
         const token = authStore.getState().token;
         if(token) {
-            console.log(token);
             const user = jwtDecode<{user: User}>(token).user; 
-            console.log(`user with token: ${user}`); 
             setUser({...user});
         }
 
@@ -28,8 +26,6 @@ function AuthMenu(): JSX.Element {
             const token = authStore.getState().token;
             if(token) {
                 const user = jwtDecode<{user: User}>(token).user; 
-                console.log(`user with token: ${{ user }}`);
-                console.log(`token: ${token}`);
                 // setToken(token);
                 setUser({...user});
             } else {

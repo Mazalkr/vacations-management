@@ -12,7 +12,6 @@ function List(): JSX.Element {
     const [vacations, setVacations] = useState<Vacation[]>([]);
 
     useEffect(() => {
-        console.log('useEffect from LIST')
         vacationsService.getAll()
             .then(vacationsFromServer => setVacations([...vacationsFromServer]))
             .catch(error => notify.error(error));
@@ -58,7 +57,7 @@ function List(): JSX.Element {
                 await vacationsService.remove(id);
                 const updatedVacations = await vacationsService.getAll();
                 setVacations([...updatedVacations]);
-                notify.success(`deleted vacation with id ${id}`);
+                notify.success(`deleted vacation successfully`);
             } catch (err) {
                 notify.error(err);
             }

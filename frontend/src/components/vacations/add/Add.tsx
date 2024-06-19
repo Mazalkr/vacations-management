@@ -74,7 +74,6 @@ function Add(): JSX.Element {
                         if (!value) return 'Start date is a required field';
                         const startDate = new Date(value);
                         const today = new Date();
-                        console.log(`today: ${today}, you choose: ${startDate}`)
                         return startDate >= today || 'Please select a date from today onwards';
                     }
                 })} />
