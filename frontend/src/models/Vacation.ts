@@ -8,6 +8,9 @@ class Vacation {
     public imageName?: string;
     public imageUrl?: string;  // in backend I used an util function to convert imageName to imageUrl.
     public image?: File;
+
+    public numberOfFollowers?: number;
+    public isFollowing?: boolean;
 }
 
 export default Vacation;

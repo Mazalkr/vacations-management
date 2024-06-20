@@ -8,6 +8,12 @@ export default interface DTO {
     price: number,
     description: string,
     imageName: string,
-    image: UploadedFile
-    imageUrl: string
+    image: UploadedFile,
+    imageUrl: string,
+
+
+
+    numberOfFollowers: number,
+    
+
 }

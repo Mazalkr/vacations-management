@@ -9,6 +9,8 @@ import { vacationsStore } from "../../../redux/VacationsState";
 import Spinner from "../../common/spinner/Spinner";
 import User from "../../../models/User";
 import { authStore } from "../../../redux/AuthState";
+import Follower from "../../../models/Follower";
+import { followersStore } from "../../../redux/FollowersState";
 
 function List(): JSX.Element {
 
@@ -40,7 +42,7 @@ function List(): JSX.Element {
         return unsubscribe;
 
     }, []);
-
+   
     async function filteredVacations(event: ChangeEvent<HTMLSelectElement>) {
         const filterType = event.target.value;
         try {
@@ -101,7 +103,7 @@ function List(): JSX.Element {
 
             <div className="container">
                 <div className="row">
-                    {vacations.map(v => <VacationCard key={v.id} vacation={v} deleteVacation={deleteCardVacation}/>)}
+                    {vacations.map(v => <VacationCard key={v.id} vacation={v} deleteVacation={deleteCardVacation} />)}
                 </div>
             </div>
 
