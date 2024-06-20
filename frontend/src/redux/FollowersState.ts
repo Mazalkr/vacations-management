@@ -10,7 +10,7 @@ export class FollowersState {
 
 // 2. Action Type:
 export enum FollowersActionType { 
-    SetFollowers = 'SetFollowers', 
+    SetFollowers = 'SetFollowers', // followers per vacation (for report and csv).
     AddFollow = 'AddFollow',
     DeleteFollow = 'DeleteFollow',
 }

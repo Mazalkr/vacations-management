@@ -41,6 +41,11 @@
     margin-bottom: 5px;
 }
 
+.Edit span {
+    color: red;
+    font-weight: bolder;
+}
+
 @font-face {
     font-family: MathildeFont;
     src: url(../../../assets/fonts/mathilde.otf);

@@ -2,14 +2,28 @@ import "./List.css";
 import { ChangeEvent, useEffect, useState } from "react";
 import notify from "../../../services/Notify";
 import vacationsService from "../../../services/Vacations";
+import followersService from "../../../services/Followers";
 import Vacation from "../../../models/Vacation";
 import VacationCard from "../vacationCard/VacationCard";
 import { vacationsStore } from "../../../redux/VacationsState";
 import Spinner from "../../common/spinner/Spinner";
+import User from "../../../models/User";
+import { authStore } from "../../../redux/AuthState";
 
 function List(): JSX.Element {
 
     const [vacations, setVacations] = useState<Vacation[]>([]);
+    const [user, setUser] = useState<User>();
+
+    useEffect(() => {
+        setUser(authStore.getState().user); 
+        
+        const unsubscribe = authStore.subscribe(() => {
+            setUser(authStore.getState().user);
+        })
+        
+        return unsubscribe;
+    }, [])
 
     useEffect(() => {
         vacationsService.getAll()
@@ -43,6 +57,12 @@ function List(): JSX.Element {
                     const activeVacations = await vacationsService.getActiveVacations();
                     setVacations([...activeVacations]);
                     break;
+                case 'isFollowingVacations':
+                    if (user?.id) {
+                        const isFollowing = await followersService.getAllByUserFollowing(user?.id);
+                        (isFollowing.length !== 0) ? setVacations([...isFollowing]) : notify.error('You don\'t have any vacations you follow yet');
+                    }
+                    break;
             }
         } catch (err) {
             notify.error(err);
@@ -73,6 +93,7 @@ function List(): JSX.Element {
                     <option value={'allVacations'}>All Vacations</option>
                     <option value={'futureVacations'}>Future Vacations</option>
                     <option value={'activeVacations'}>Active Vacations</option>
+                    {user?.roleId === 2 && <option value={'isFollowingVacations'}>Vacations I follow</option>}
                 </select>
             </div>
 

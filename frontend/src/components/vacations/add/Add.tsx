@@ -37,6 +37,7 @@ function Add(): JSX.Element {
                     }
                 })} />
                 <span className="error">{formState.errors.destination?.message}</span>
+                <br/>
 
                 <label className="form-label">Description:</label> <br/>
                 <textarea className="form-control" {...register('description', {
@@ -46,6 +47,7 @@ function Add(): JSX.Element {
                     }
                 })} />
                 <span className="error">{formState.errors.description?.message}</span>
+                <br/>
 
                 <label className="form-label">Price:</label>
                 <input className="form-control" type="number" step="0.01" {...register('price', {
@@ -63,6 +65,7 @@ function Add(): JSX.Element {
                     }
                 })} />
                 <span className="error">{formState.errors.price?.message}</span>
+                <br/>
 
                 <label className="form-label">From:</label>
                 <input className="form-control" type="date" {...register('startDate', {
@@ -78,6 +81,7 @@ function Add(): JSX.Element {
                     }
                 })} />
                 <span className="error">{formState.errors.startDate?.message}</span>
+                <br/>
 
                 <label className="form-label">To:</label>
                 <input className="form-control" type="date" {...register('endDate', {
@@ -95,6 +99,7 @@ function Add(): JSX.Element {
                     }
                 })} />
                 <span className="error">{formState.errors.endDate?.message}</span>
+                <br/>
 
                 <label className="form-label">Image:</label>
                 <input className="form-control" type="file" accept="image/*" {...register('image', {
