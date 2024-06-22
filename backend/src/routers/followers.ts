@@ -9,6 +9,6 @@ router.get('/vacations/users/isFollowing/:userId', getAllByUserFollowing);
 router.get('/vacations/extended/users/:userId', getAllVacations); 
 router.get('/vacations/users/isFollowing/:userId/:vacationId', isFollowing); 
 router.post('/', follow);
-router.delete('/', unFollow);  
+router.delete('/:userId/:vacationId', unFollow);  
 
 export default router;

@@ -60,8 +60,10 @@ export const getAllVacations =  async (req: Request, res: Response, next: NextFu
 // Check if the user isFollowing on specific vacation:
 export const isFollowing =  async (req: Request, res: Response, next: NextFunction) => {
     try {
-        // const isFollowing = await getModel().isFollowing(req.params.userId, req.params.vacationId);
-        const isFollowing = await getModel().isFollowing(req.body);
+        const userId = req.params.userId;
+        const vacationId = req.params.vacationId;
+        const isFollowing = await getModel().isFollowing({ userId, vacationId});
+        // const isFollowing = await getModel().isFollowing(req.body);
         res.json(isFollowing);
     } catch (err) {
         next(err);
@@ -79,7 +81,9 @@ export const follow =  async (req: Request, res: Response, next: NextFunction) =
 
 export const unFollow =  async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const isRemovedFollow = await getModel().unFollow(req.body);  
+        const userId = req.params.userId;
+        const vacationId = req.params.vacationId;
+        const isRemovedFollow = await getModel().unFollow({ userId, vacationId});  
         if (isRemovedFollow) return res.sendStatus(StatusCodes.NO_CONTENT); 
         res.status(StatusCodes.NOT_FOUND).json({success: false});  // 404
     } catch (err) {

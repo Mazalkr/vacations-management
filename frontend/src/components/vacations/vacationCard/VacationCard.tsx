@@ -11,7 +11,10 @@ import Follower from "../../../models/Follower";
 import followersService from "../../../services/Followers";
 import reportService from "../../../services/Report";
 import notify from "../../../services/Notify";
-import { followersStore } from "../../../redux/FollowersState";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+
 
 interface VacationCardProps {
     vacation: Vacation;
@@ -21,7 +24,7 @@ interface VacationCardProps {
 function VacationCard(props: VacationCardProps): JSX.Element {
 
     const [user, setUser] = useState<User>();
-    const [numberOfFollowers, setNumberOfFollowers] = useState<number>();
+    const [numberOfFollowers, setNumberOfFollowers] = useState<number>(0);
     const [isFollowing, setIsFollowing] = useState<boolean>();
 
     useEffect(() => {
@@ -32,26 +35,43 @@ function VacationCard(props: VacationCardProps): JSX.Element {
         })
         
         return unsubscribe;
-    }, []);
+    }, [user]);
 
     useEffect(() => {
         followersService.countAllByVacation(props.vacation.id as string)
             .then(followersFromServer => setNumberOfFollowers(followersFromServer))
             .catch(error => notify.error(error));
-    }, []);
-
-    // useEffect(() => {
-    //     followersService.isFollowing(user?.id as string, props.vacation.id as string)
-    //         .then(isFollowingFromServer => {console.log(props.vacation?.id); setIsFollowing(isFollowingFromServer)})
-    //         .catch(error => notify.error(error));
-    // }, []);
+    }, [props.vacation.id]);
 
     useEffect(() => {
-        const follower: Follower = { userId: user?.id, vacationId: props.vacation.id }
-        followersService.isFollowing(follower)
-            .then(isFollowingFromServer => setIsFollowing(isFollowingFromServer))
-            .catch(error => notify.error(error));
-    }, []);
+        if (user?.id) {
+            followersService.isFollowing({ userId: user?.id, vacationId: props.vacation.id })
+                .then(isFollowingFromServer => setIsFollowing(isFollowingFromServer))
+                .catch(error => notify.error(error));
+        }
+    }, [user]);
+
+    async function handleFollow(): Promise<void> {
+        const userId = user?.id;
+        const vacationId = props.vacation.id;
+        // if the user isFollowing & click on button --> UNFOLLOW
+        // else --> FOLLOW
+        if (isFollowing) {
+            followersService.unFollow({ userId, vacationId })
+                .then(() => {
+                    setIsFollowing(false);
+                    setNumberOfFollowers(curr => curr - 1);
+                })
+                .catch(error => notify.error(error));
+        } else {
+            followersService.follow({ userId, vacationId })
+                .then(() => {
+                    setIsFollowing(true);
+                    setNumberOfFollowers(curr => curr + 1);
+                })
+                .catch(error => notify.error(error))
+        }
+    }
 
     return (
         <div className="VacationCard col">
@@ -67,15 +87,14 @@ function VacationCard(props: VacationCardProps): JSX.Element {
                         <li className="list-group-item"><h6 className="card-text">Price: {formatPrice(props.vacation.price)}</h6></li>
                         {user?.roleId === 2 && <>
                             <li className="list-group-item">
-                                <h6 className="card-text">Followers: {numberOfFollowers}</h6>
-                            </li>
-                            <li className="list-group-item">
-                                <h6 className="card-text">is following? {isFollowing ? 'true' : 'false' }</h6>
-                                <span>number of followers: {props.vacation.numberOfFollowers}</span><br/>
-                                <span>isFollowing: {props.vacation.isFollowing}</span>
-                            </li>
-                            <li className="list-group-item">
-                            <button className="btn btn-success" data-bs-toggle="button">Follow</button>
+                                <button className="btn" 
+                                    style={{
+                                        backgroundColor: isFollowing ? 'salmon' : 'grey',
+                                        color: 'white',
+                                    }}
+                                    onClick={handleFollow}>
+                                    <FontAwesomeIcon icon={isFollowing ? solidHeart : regularHeart} /> {numberOfFollowers}
+                                </button>
                             </li>
                         </>}
                         

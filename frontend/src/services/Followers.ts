@@ -30,9 +30,8 @@ class Followers {
     
     // Check if the user isFollowing on specific vacation:
     public async isFollowing(follower: FollowerModel): Promise<boolean> {
-        const response = await axios.get<boolean>(`${appConfig.vacationsByUserFollowing}/${follower.userId}`);
+        const response = await axios.get<boolean>(`${appConfig.vacationsByUserFollowing}/${follower.userId}/${follower.vacationId}`);
         const isFollowing = response.data;
-        console.log('isFollowing', isFollowing);  // I get an array of 
         return isFollowing;
     }
 
@@ -53,7 +52,7 @@ class Followers {
     }
 
     public async unFollow(follower: FollowerModel): Promise<void> {
-        await axios.delete(appConfig.followersUrl);
+        await axios.delete(`${appConfig.followersUrl}/${follower.userId}/${follower.vacationId}`);
 
         const action: FollowersAction = {
             type: FollowersActionType.DeleteFollow,

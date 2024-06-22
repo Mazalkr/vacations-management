@@ -71,13 +71,14 @@ class Follower implements Model {
     // public async isFollowing(userId: string, vacationId: string): Promise<boolean> {
     public async isFollowing(follower: FollowerDTO): Promise<boolean> {
         const { userId, vacationId } = follower;
-        const result: RowDataPacket = await query(`
+        // const result: RowDataPacket = await query(`
+        const result = await query(`
             SELECT  COUNT(*) AS isFollowing
             FROM    followers 
             WHERE   userId = ? AND vacationId = ?
         `, [userId, vacationId]);
-        const isFollowingResult: boolean = result[0].isFollowing;
-        return isFollowingResult;
+        // const isFollowingResult: boolean = result[0].isFollowing;
+        return Boolean(result[0].isFollowing);
     }
     // user ID: b5bdd65c-2687-11ef-b608-99a675554b78 PACS
     // vacation id: 9adf0a92-2bea-11ef-913d-31d7a7bdbd7a SARANDA
