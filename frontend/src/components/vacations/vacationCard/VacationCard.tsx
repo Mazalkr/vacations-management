@@ -78,26 +78,25 @@ function VacationCard(props: VacationCardProps): JSX.Element {
                 
             <div className="card border-secondary mb-3 h-100" style={{ width: '18rem' }}>
                 <img src={props.vacation.imageUrl ? props.vacation.imageUrl : ''} className="card-img-top" alt="destination" />
+                <div className="card-img-overlay">
+                    {user?.roleId === 2 && <>
+                        <button className="btn" 
+                            style={{
+                                backgroundColor: isFollowing ? 'salmon' : 'grey',
+                                color: 'white', position: "absolute", top: 0, right: 0
+                            }}
+                            onClick={handleFollow}>
+                            <FontAwesomeIcon icon={isFollowing ? solidHeart : regularHeart} /> {numberOfFollowers}
+                        </button> <br/><br/><br/>
+                    </>}
+                    <h5 className="card-title" style={{position: "absolute", top: 120, left: 10}}>{props.vacation.destination}</h5>
+                </div>
                 <div className="card-body">
-                    <h3 className="card-title">{props.vacation.destination}</h3>
-                    
                     <h6 className="card-text">{formatDate(props.vacation.startDate)} - {formatDate(props.vacation.endDate)}</h6>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item"><p className="card-text">{props.vacation.description}</p></li>
                         <li className="list-group-item"><h6 className="card-text">Price: {formatPrice(props.vacation.price)}</h6></li>
-                        {user?.roleId === 2 && <>
-                            <li className="list-group-item">
-                                <button className="btn" 
-                                    style={{
-                                        backgroundColor: isFollowing ? 'salmon' : 'grey',
-                                        color: 'white',
-                                    }}
-                                    onClick={handleFollow}>
-                                    <FontAwesomeIcon icon={isFollowing ? solidHeart : regularHeart} /> {numberOfFollowers}
-                                </button>
-                            </li>
-                        </>}
-                        
+
                         {user?.roleId === 3 && <li className="list-group-item">
                             <NavLink to={`/vacations/edit/${props.vacation.id}`}><button className="btn btn-primary">Edit</button></NavLink>
                             <button className="btn btn-danger" onClick={() => (props.deleteVacation(props.vacation.id))}>Delete</button>
