@@ -10,8 +10,8 @@ class Followers {
     // Number of followers by vacation id: 
     public async countAllByVacation(vacationId: string): Promise<number> {
         const response = await axios.get<number>(`${appConfig.followersByVacationsUrl}/${vacationId}`);
-        const vacations = response.data;
-        return vacations;
+        const numberOfFollowers = response.data;
+        return numberOfFollowers;
     }
 
     // Vacations that the user is following:
@@ -26,6 +26,14 @@ class Followers {
         const response = await axios.get<VacationModel[]>(`${appConfig.vacationsExtendedUrl}/${userId}`);
         const vacations = response.data;
         return vacations;
+    }
+    
+    // Check if the user isFollowing on specific vacation:
+    public async isFollowing(follower: FollowerModel): Promise<boolean> {
+        const response = await axios.get<boolean>(`${appConfig.vacationsByUserFollowing}/${follower.userId}`);
+        const isFollowing = response.data;
+        console.log('isFollowing', isFollowing);  // I get an array of 
+        return isFollowing;
     }
 
     public async follow(follower: FollowerModel): Promise<FollowerModel> {

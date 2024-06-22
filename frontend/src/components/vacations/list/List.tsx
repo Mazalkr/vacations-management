@@ -11,8 +11,10 @@ import User from "../../../models/User";
 import { authStore } from "../../../redux/AuthState";
 import Follower from "../../../models/Follower";
 import { followersStore } from "../../../redux/FollowersState";
+import { useParams } from "react-router-dom";
 
 function List(): JSX.Element {
+
 
     const [vacations, setVacations] = useState<Vacation[]>([]);
     const [user, setUser] = useState<User>();
@@ -28,6 +30,7 @@ function List(): JSX.Element {
     }, [])
 
     useEffect(() => {
+
         vacationsService.getAll()
             .then(vacationsFromServer => setVacations([...vacationsFromServer]))
             .catch(error => notify.error(error));
@@ -36,7 +39,7 @@ function List(): JSX.Element {
         const unsubscribe = vacationsStore.subscribe(() => {
             console.log('vacations store has been modified!');
             setVacations([...vacationsStore.getState().vacations]);  
-           
+            
         })
 
         return unsubscribe;
@@ -61,6 +64,7 @@ function List(): JSX.Element {
                     break;
                 case 'isFollowingVacations':
                     if (user?.id) {
+                        console.log('from filter', user.id);
                         const isFollowing = await followersService.getAllByUserFollowing(user?.id);
                         (isFollowing.length !== 0) ? setVacations([...isFollowing]) : notify.error('You don\'t have any vacations you follow yet');
                     }

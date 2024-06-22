@@ -6,7 +6,7 @@ import addImageToBody from "../middlewares/add-image-to-body";
 import uploadImage from "../middlewares/upload-image";
 import enforceAdmin from "../middlewares/enforce-admin";
 import enforceAuth from "../middlewares/enforce-auth";
-import { getAllFollowersPerVacation, sendCSV } from "../controllers/followers/controller";
+import { getAllFollowersPerVacation, getAllVacations, sendCSV } from "../controllers/followers/controller";
 
 const router = Router();
 

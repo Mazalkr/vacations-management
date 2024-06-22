@@ -18,6 +18,7 @@ class AppConfig {
     public followersByVacationsUrl = `${this.followersUrl}/vacations`;
     public vacationsByUserFollowing = `${this.followersByVacationsUrl}/users/isFollowing`;
     public vacationsExtendedUrl = `${this.followersByVacationsUrl}/extended/users`;
+    public isFollowingUrl = `${this.vacationsByUserFollowing}`;
 
     public successNotificationDuration = 2000;
     public errorNotificationDuration = 6000;

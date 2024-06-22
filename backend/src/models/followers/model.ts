@@ -7,6 +7,8 @@ export default interface Model {
     countAllByVacation(vacationId: string): Promise<number>;  
     getAllByUserFollowing(userId: string): Promise<VacationDTO[]>;  
     getAllVacations(userId: string): Promise<VacationDTO[]>;  // include isFollowing and number of followers per vacation.
+    // isFollowing(userId: string, vacationId: string): Promise<boolean>; // is user following on specific vacation.
+    isFollowing(follower: FollowerDTO): Promise<boolean>; // is user following on specific vacation.
     follow(follower: FollowerDTO): Promise<FollowerDTO>;
     unFollow(follower: FollowerDTO): Promise<boolean>;
 }

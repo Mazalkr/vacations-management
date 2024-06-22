@@ -8,6 +8,17 @@ function Menu(): JSX.Element {
 
     const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(false);  
     const [isAdmin, setIsAdmin] = useState<boolean>(false);  
+    // const [user, setUser] = useState<User>();
+
+    // useEffect(() => {
+    //     setUser(authStore.getState().user); 
+        
+    //     const unsubscribe = authStore.subscribe(() => {
+    //         setUser(authStore.getState().user);
+    //     })
+        
+    //     return unsubscribe;
+    // }, [])
 
     useEffect(() => {
         setIsUserLoggedIn(authStore.getState().token !== '');  // true/false 
