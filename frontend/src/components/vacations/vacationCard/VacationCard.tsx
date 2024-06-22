@@ -92,8 +92,8 @@ function VacationCard(props: VacationCardProps): JSX.Element {
                     <h5 className="card-title" style={{position: "absolute", top: 120, left: 10}}>{props.vacation.destination}</h5>
                 </div>
                 <div className="card-body">
-                    <h6 className="card-text">{formatDate(props.vacation.startDate)} - {formatDate(props.vacation.endDate)}</h6>
                     <ul className="list-group list-group-flush">
+                        <li className="list-group-item"><h6 className="card-text">{formatDate(props.vacation.startDate)} - {formatDate(props.vacation.endDate)}</h6></li>
                         <li className="list-group-item"><p className="card-text">{props.vacation.description}</p></li>
                         <li className="list-group-item"><h6 className="card-text">Price: {formatPrice(props.vacation.price)}</h6></li>
 
