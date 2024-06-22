@@ -57,6 +57,17 @@ export const getAllVacations =  async (req: Request, res: Response, next: NextFu
     }
 }
 
+// Check if the user isFollowing on specific vacation:
+export const isFollowing =  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        // const isFollowing = await getModel().isFollowing(req.params.userId, req.params.vacationId);
+        const isFollowing = await getModel().isFollowing(req.body);
+        res.json(isFollowing);
+    } catch (err) {
+        next(err);
+    }
+}
+
 export const follow =  async (req: Request, res: Response, next: NextFunction) => {
     try {
         const newFollow = await getModel().follow(req.body);

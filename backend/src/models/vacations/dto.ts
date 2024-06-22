@@ -14,6 +14,5 @@ export default interface DTO {
 
 
     numberOfFollowers: number,
-    
-
+    isFollowing: boolean
 }

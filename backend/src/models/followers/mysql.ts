@@ -67,6 +67,22 @@ class Follower implements Model {
         return vacations;
     }
 
+    // Check if the user isFollowing on specific vacation:
+    // public async isFollowing(userId: string, vacationId: string): Promise<boolean> {
+    public async isFollowing(follower: FollowerDTO): Promise<boolean> {
+        const { userId, vacationId } = follower;
+        const result: RowDataPacket = await query(`
+            SELECT  COUNT(*) AS isFollowing
+            FROM    followers 
+            WHERE   userId = ? AND vacationId = ?
+        `, [userId, vacationId]);
+        const isFollowingResult: boolean = result[0].isFollowing;
+        return isFollowingResult;
+    }
+    // user ID: b5bdd65c-2687-11ef-b608-99a675554b78 PACS
+    // vacation id: 9adf0a92-2bea-11ef-913d-31d7a7bdbd7a SARANDA
+    // DIMONA: 5cbc39b8-306d-11ef-8114-b931cc6aad24
+
     public async getOne(userId: string): Promise<FollowerDTO> {
         const follower = (await query(`
             SELECT  userId,
