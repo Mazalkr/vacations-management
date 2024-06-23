@@ -16,7 +16,6 @@ function Routing(): JSX.Element {
 
     useEffect(() => {
         setUser(authStore.getState().user); 
-        console.log('userId:', user?.id);
         
         const unsubscribe = authStore.subscribe(() => {
             setUser(authStore.getState().user);

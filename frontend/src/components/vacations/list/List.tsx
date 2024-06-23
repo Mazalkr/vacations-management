@@ -37,7 +37,6 @@ function List(): JSX.Element {
 
         // REDUX:
         const unsubscribe = vacationsStore.subscribe(() => {
-            console.log('vacations store has been modified!');
             setVacations([...vacationsStore.getState().vacations]);  
             
         })
@@ -64,7 +63,6 @@ function List(): JSX.Element {
                     break;
                 case 'isFollowingVacations':
                     if (user?.id) {
-                        console.log('from filter', user.id);
                         const isFollowing = await followersService.getAllByUserFollowing(user?.id);
                         (isFollowing.length !== 0) ? setVacations([...isFollowing]) : notify.error('You don\'t have any vacations you follow yet');
                     }

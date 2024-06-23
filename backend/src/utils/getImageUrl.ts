@@ -1,5 +1,6 @@
 import config from "config";
 import DTO from "../models/vacations/dto";
+import logger from "./logger";
 
 export default function getImageUrl(vacation: DTO) {
     try {
@@ -11,6 +12,7 @@ export default function getImageUrl(vacation: DTO) {
         delete vacationWithImageUrl.image;
         return vacationWithImageUrl;
     } catch (err) {
-        console.log(err);
+        // console.log(err);
+        logger.error(err);
     }
 }

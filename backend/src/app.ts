@@ -28,7 +28,7 @@ server.use('/api/followers', followersRouter);
 server.use(notFound);
 
 // Error middlewares:
-// server.use(errorLogger); 
+server.use(errorLogger); 
 server.use(errorHandler);
 
 export default server;

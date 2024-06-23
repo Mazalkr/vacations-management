@@ -21,7 +21,6 @@ function Report(): JSX.Element {
         
         // REDUX:
         const unsubscribe = followersStore.subscribe(() => {
-            console.log('followers store has been modified!');
             setFollowersPerVacation([...followersStore.getState().followersPerVacation]);  
         })
 

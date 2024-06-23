@@ -1,0 +1,6 @@
+{"level":"info","message":"vacations is running on localhost:8080"}
+{"level":"info","message":"user pacs@gmail.com accessed GET:/api/vacations/future"}
+{"level":"info","message":"user pacs@gmail.com accessed GET:/api/vacations/active"}
+{"level":"info","message":"user pacs@gmail.com accessed GET:/api/followers/vacations/203ce9b0-2bf1-11ef-913d-31d7a7bdbd7a"}
+{"level":"info","message":"user pacs@gmail.com accessed GET:/api/followers/vacations/users/isFollowing/b5bdd65c-2687-11ef-b608-99a675554b78/203ce9b0-2bf1-11ef-913d-31d7a7bdbd7a"}
+{"level":"info","message":"user pacs@gmail.com accessed GET:/api/followers/vacations/203ce9b0-2bf1-11ef-913d-31d7a7bdbd7a"}

@@ -41,7 +41,7 @@ function VacationCard(props: VacationCardProps): JSX.Element {
         followersService.countAllByVacation(props.vacation.id as string)
             .then(followersFromServer => setNumberOfFollowers(followersFromServer))
             .catch(error => notify.error(error));
-    }, [props.vacation.id]);
+    }, [props.vacation.id, isFollowing]);
 
     useEffect(() => {
         if (user?.id) {
@@ -89,7 +89,7 @@ function VacationCard(props: VacationCardProps): JSX.Element {
                             <FontAwesomeIcon icon={isFollowing ? solidHeart : regularHeart} /> {numberOfFollowers}
                         </button> <br/><br/><br/>
                     </>}
-                    <h5 className="card-title" style={{position: "absolute", top: 120, left: 10}}>{props.vacation.destination}</h5>
+                    <h5 className="card-title">{props.vacation.destination}</h5>
                 </div>
                 <div className="card-body">
                     <ul className="list-group list-group-flush">
