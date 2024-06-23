@@ -12,12 +12,19 @@ import { authStore } from "../../../redux/AuthState";
 import Follower from "../../../models/Follower";
 import { followersStore } from "../../../redux/FollowersState";
 import { useParams } from "react-router-dom";
+import appConfig from "../../../utils/AppConfig";
+import Pagination from "../pagination/Pagination";
 
 function List(): JSX.Element {
 
-
     const [vacations, setVacations] = useState<Vacation[]>([]);
     const [user, setUser] = useState<User>();
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [totalVacations, setTotalVacations] = useState<number>(0);
+    
+    // // Pagination:
+    // const startIndex = (currentPage - 1) * appConfig.limit;
+    // const endIndex = currentPage * appConfig.limit;
 
     useEffect(() => {
         setUser(authStore.getState().user); 
@@ -30,28 +37,38 @@ function List(): JSX.Element {
     }, [])
 
     useEffect(() => {
+        const page = currentPage;
+        const limit = appConfig.limit;
 
-        vacationsService.getAll()
-            .then(vacationsFromServer => setVacations([...vacationsFromServer]))
+        // vacationsService.getAll()
+        vacationsService.getAllPaginated({ page, limit })
+            .then(vacationsFromServer => {
+                setVacations([...vacationsFromServer]);
+                setTotalVacations(vacationsFromServer.length)
+            })
             .catch(error => notify.error(error));
 
         // REDUX:
         const unsubscribe = vacationsStore.subscribe(() => {
             setVacations([...vacationsStore.getState().vacations]);  
-            
+            setTotalVacations(vacationsStore.getState().vacations.length)
         })
 
         return unsubscribe;
 
-    }, []);
+    }, [currentPage]);
    
     async function filteredVacations(event: ChangeEvent<HTMLSelectElement>) {
         const filterType = event.target.value;
         try {
             switch(filterType) {
                 case 'allVacations':
-                    const allVacations = await vacationsService.getAll();
+                    // const allVacations = await vacationsService.getAll();
+                    const page = currentPage;
+                    const limit = appConfig.limit;
+                    const allVacations = await vacationsService.getAllPaginated({ page, limit });
                     setVacations([...allVacations]);
+                    setTotalVacations(allVacations.length)
                     break;
                 case 'futureVacations':
                     const futureVacations = await vacationsService.getFutureVacations();
@@ -88,6 +105,10 @@ function List(): JSX.Element {
         }
     }
 
+    async function paginate(page: number) {
+        setCurrentPage(page);
+    }
+
     return (
         <div className="List">
 
@@ -108,6 +129,8 @@ function List(): JSX.Element {
                     {vacations.map(v => <VacationCard key={v.id} vacation={v} deleteVacation={deleteCardVacation} />)}
                 </div>
             </div>
+
+            <Pagination totalVacations={totalVacations} limit={appConfig.limit} paginate={paginate}/>
 
         </div>
     );

@@ -22,6 +22,8 @@ class AppConfig {
 
     public successNotificationDuration = 2000;
     public errorNotificationDuration = 6000;
+
+    public limit = 10; // for pagination, 10 vacations per page.
 }
 
 const appConfig = new AppConfig();

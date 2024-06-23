@@ -3,10 +3,21 @@ import getModel from "../../models/vacations/factory";
 import { StatusCodes } from "http-status-codes";
 import getImageUrl from '../../utils/getImageUrl'
 
-
 export const getAll =  async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vacations = await getModel().getAll();
+        res.json(vacations.map(getImageUrl));
+    } catch (err) {
+        next(err);
+    }
+}
+
+// getAll with pagination:
+export const getAllPaginated =  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const page = +req.params.page;
+        const limit = +req.params.limit;
+        const vacations = await getModel().getAllPaginated({ page, limit });
         res.json(vacations.map(getImageUrl));
     } catch (err) {
         next(err);

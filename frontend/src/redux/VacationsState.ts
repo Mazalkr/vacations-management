@@ -1,9 +1,11 @@
 import { createStore } from "redux";
 import Vacation from "../models/Vacation";
+import Pagination from "../models/Pagination";  // CONSIDER TO DELETE
 
 // 1. Global State for vacations:
 export class VacationsState {
     public vacations: Vacation[] = []; 
+    public Pagination: Vacation = {}; // CONSIDER TO DELETE
 }
 
 // 2. Action Type:

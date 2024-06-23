@@ -1,5 +1,6 @@
 import axios from "axios";
 import Vacation from "../models/Vacation";
+import Pagination from "../models/Pagination";
 import appConfig from "../utils/AppConfig";
 import { VacationsAction, VacationsActionType, vacationsStore } from "../redux/VacationsState";
 
@@ -30,6 +31,40 @@ class Vacations {
         
         return vacations;
     }
+
+    // getAll with pagination without REDUX:
+    public async getAllPaginated(pagination: Pagination): Promise<Vacation[]> {
+        const response = await axios.get<Vacation[]>(`${appConfig.vacationsUrl}/${pagination.page}/${pagination.limit}`);
+        const vacations = response.data;
+        return vacations;
+    }
+
+    // // getAll with pagination with REDUX:
+    // public async getAllPaginated(pagination: Pagination): Promise<Vacation[]> {
+
+    //     // GET the vacations from REDUX:
+    //     let vacations = vacationsStore.getState().vacations;
+
+    //     if (vacations.length === 0) {
+    //         // GET the vacations from remote server if the array vacations[] in vacationsStore (from redux) is empty:
+    //         const response = await axios.get<Vacation[]>(`${appConfig.vacationsUrl}/${pagination.page}/${pagination.limit}`);
+        
+    //         // EXTRACT the data from the response:
+    //         vacations = response.data;
+
+
+    //         // INFORM the redux to load new data:
+    //         const action: VacationsAction = {
+    //             type: VacationsActionType.SetVacations,
+    //             payload: vacations
+    //         }
+
+    //         // SEND this action to 'redux':
+    //         vacationsStore.dispatch(action);  // dispatch --> send the parameter 'action' to 'vacationsStore' in REDUX.
+    //     }
+        
+    //     return vacations;
+    // }
 
     public async getOne(id: string): Promise<Vacation | undefined> {
 

@@ -1,5 +1,6 @@
 import Model from "./model";
 import DTO from './dto';
+import PaginationDTO from './pagination-dto';
 import { OkPacketParams } from "mysql2";
 import query from "../../db/mysql";
 
@@ -17,6 +18,25 @@ class Vacation implements Model {
             FROM        vacations
             ORDER BY    startDate ASC;
         `);
+        return vacations;
+    }
+
+    // getAll with pagination:
+    public async getAllPaginated(pagination: PaginationDTO): Promise<DTO[]> {
+        const { page, limit } = pagination;
+        const offset = (page - 1) * limit;  // for example: if page number is 1 --> start from offset 0.
+        const vacations = await query(`
+            SELECT      id,
+                        destination,
+                        startDate,
+                        endDate,
+                        price,
+                        description,
+                        imageName
+            FROM        vacations
+            ORDER BY    startDate ASC
+            LIMIT       ?, ?
+        `, [offset, limit]);
         return vacations;
     }
 
