@@ -6572,3 +6572,4 @@
 {"level":"error","message":"\"image\" is required"}
 {"level":"error","message":"\"image\" is required"}
 {"level":"info","message":"user mazal@gmail.com accessed POST:/api/vacations"}
+{"level":"error"}
