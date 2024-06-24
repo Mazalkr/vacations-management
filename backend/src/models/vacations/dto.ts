@@ -11,8 +11,8 @@ export default interface DTO {
     image: UploadedFile,
     imageUrl: string,
 
-
-
     numberOfFollowers: number,
-    isFollowing: boolean
+    isFollowing: boolean,
+
+    totalVacations: number
 }

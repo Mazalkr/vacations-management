@@ -11,6 +11,8 @@ class Vacation {
 
     public numberOfFollowers?: number;
     public isFollowing?: boolean;
+
+    public totalVacations?: number;
 }
 
 export default Vacation;

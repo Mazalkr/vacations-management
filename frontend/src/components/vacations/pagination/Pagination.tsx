@@ -14,7 +14,7 @@ function Pagination(props: PaginationProps): JSX.Element {
     const pageNumbers = [];
     const totalPages = Math.ceil(props.totalVacations / props.limit); 
     // for example: if there is 12 vacations, and we want just 10 vacations per page --> 1.2 --> ceil to 2 pages.
-    for (let i = 1; i <= totalPages + 1; i++) pageNumbers.push(i);
+    for (let i = 1; i <= totalPages; i++) pageNumbers.push(i);
 
     return (
         <div className="Pagination">

@@ -26,16 +26,17 @@ class Vacation implements Model {
         const { page, limit } = pagination;
         const offset = (page - 1) * limit;  // for example: if page number is 1 --> start from offset 0.
         const vacations = await query(`
-            SELECT      id,
-                        destination,
-                        startDate,
-                        endDate,
-                        price,
-                        description,
-                        imageName
-            FROM        vacations
-            ORDER BY    startDate ASC
-            LIMIT       ?, ?
+            SELECT              id,
+                                destination,
+                                startDate,
+                                endDate,
+                                price,
+                                description,
+                                imageName,
+            COUNT(*) OVER() AS  totalVacations
+            FROM                vacations
+            ORDER BY            startDate ASC
+            LIMIT               ?, ?
         `, [offset, limit]);
         return vacations;
     }
@@ -76,17 +77,18 @@ class Vacation implements Model {
         const { page, limit } = pagination;
         const offset = (page - 1) * limit;
         const futureVacations = await query(`
-            SELECT      id,
-                        destination,
-                        startDate,
-                        endDate,
-                        price,
-                        description,
-                        imageName
-            FROM        vacations
-            WHERE       startDate > NOW()
-            ORDER BY    startDate ASC
-            LIMIT       ?, ?
+            SELECT              id,
+                                destination,
+                                startDate,
+                                endDate,
+                                price,
+                                description,
+                                imageName,
+            COUNT(*) OVER() AS  totalVacations
+            FROM                vacations
+            WHERE               startDate > NOW()
+            ORDER BY            startDate ASC
+            LIMIT               ?, ?
         `, [offset, limit]);
         return futureVacations;
     }

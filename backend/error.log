@@ -32,3 +32,9 @@
 {"level":"error","message":"did not find such a combination of username & password"}
 {"level":"error","message":"did not find such a combination of username & password"}
 {"level":"error","message":"did not find such a combination of username & password"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'id')"}
+{"level":"error","message":"Cannot read properties of undefined (reading 'id')"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error","message":"\"image\" is required"}
+{"level":"error","message":"\"image\" is required"}

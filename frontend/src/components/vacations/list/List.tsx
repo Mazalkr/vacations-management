@@ -44,7 +44,8 @@ function List(): JSX.Element {
         vacationsService.getAllPaginated({ page, limit })
             .then(vacationsFromServer => {
                 setVacations([...vacationsFromServer]);
-                setTotalVacations([...vacationsFromServer].length)
+                // setTotalVacations([...vacationsFromServer].length)
+                setTotalVacations(vacationsFromServer[0].totalVacations as number)
             })
             .catch(error => notify.error(error));
 
@@ -69,14 +70,14 @@ function List(): JSX.Element {
                     page = currentPage;
                     const allVacations = await vacationsService.getAllPaginated({ page, limit });
                     setVacations([...allVacations]);
-                    setTotalVacations([...allVacations].length);
+                    setTotalVacations(allVacations[0].totalVacations as number);
                     break;
                 case 'futureVacations':
                     // const futureVacations = await vacationsService.getFutureVacations();
                     page = currentPage;
                     const futureVacations = await vacationsService.getFutureVacations({ page, limit });
                     setVacations([...futureVacations]);
-                    setTotalVacations([...futureVacations].length);
+                    setTotalVacations(futureVacations[0].totalVacations as number);
                     break;
                 case 'activeVacations':
                     const activeVacations = await vacationsService.getActiveVacations();
@@ -127,7 +128,6 @@ function List(): JSX.Element {
             </div>
 
             {vacations.length === 0 && <Spinner/>}
-            {vacations.length > 10 &&  <p>pagination</p>}
 
             <div className="container">
                 <div className="row">
@@ -135,7 +135,8 @@ function List(): JSX.Element {
                 </div>
             </div>
 
-            <Pagination totalVacations={vacations.length} limit={appConfig.limit} paginate={paginate}/>
+            {/* {(vacations[0].totalVacations as number) > 10 && <Pagination totalVacations={totalVacations} limit={appConfig.limit} paginate={paginate}/>} */}
+            <Pagination totalVacations={totalVacations} limit={appConfig.limit} paginate={paginate}/>
 
         </div>
     );

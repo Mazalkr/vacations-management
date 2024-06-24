@@ -23,7 +23,7 @@ class AppConfig {
     public successNotificationDuration = 2000;
     public errorNotificationDuration = 6000;
 
-    public limit = 10; // for pagination, 10 vacations per page.
+    public limit = 9; // for pagination, 9 vacations per page (SPEC demand is 10).
 }
 
 const appConfig = new AppConfig();
