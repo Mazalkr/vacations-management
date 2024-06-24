@@ -5455,3 +5455,4 @@
 {"level":"info","message":"user pacs@gmail.com accessed GET:/api/followers/vacations/28201e79-2be8-11ef-913d-31d7a7bdbd7a"}
 {"level":"info","message":"user pacs@gmail.com accessed GET:/api/followers/vacations/b8f9f1bf-2be6-11ef-913d-31d7a7bdbd7a"}
 {"level":"info","message":"user pacs@gmail.com accessed GET:/api/followers/vacations/users/isFollowing/662484b9-3230-11ef-8c6b-90e4c633aabc"}
+{"level":"info","message":"vacations is running on localhost:8080"}
