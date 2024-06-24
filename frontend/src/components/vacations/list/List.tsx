@@ -69,8 +69,10 @@ function List(): JSX.Element {
                     setTotalVacations(futureVacations[0].totalVacations as number);
                     break;
                 case 'activeVacations':
-                    const activeVacations = await vacationsService.getActiveVacations();
+                    page = currentPage;
+                    const activeVacations = await vacationsService.getActiveVacations({ page, limit });
                     setVacations([...activeVacations]);
+                    setTotalVacations(activeVacations[0].totalVacations as number);
                     break;
                 case 'isFollowingVacations':
                     if (user?.id) {

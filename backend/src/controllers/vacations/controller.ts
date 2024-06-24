@@ -36,9 +36,12 @@ export const getFutureVacations =  async (req: Request, res: Response, next: Nex
     }
 }
 
+// active vacations with pagination:
 export const getActiveVacations =  async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const activeVacations = await getModel().getActiveVacations();
+        const page = +req.params.page;
+        const limit = +req.params.limit;
+        const activeVacations = await getModel().getActiveVacations({ page, limit });
         res.json(activeVacations.map(getImageUrl));
     } catch (err) {
         next(err);

@@ -6,7 +6,7 @@ export default interface Model {
     getAllPaginated(pagination: PaginationDTO): Promise<DTO[]>;  
     getOne(id: string): Promise<DTO>;  
     getFutureVacations(pagination: PaginationDTO): Promise<DTO[]>; 
-    getActiveVacations(): Promise<DTO[]>;
+    getActiveVacations(pagination: PaginationDTO): Promise<DTO[]>;
     add(vacation: DTO): Promise<DTO>;
     delete(id: string): Promise<boolean>;
     update(product: DTO): Promise<DTO>;

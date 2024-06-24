@@ -14,7 +14,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMTE4Yjc1OTAtMjMwNi0xMWVmLTgxNDMtMjg3ZGZhNzA0MmY5IiwiZmlyc3ROYW1lIjoiTWF0YW4iLCJsYXN0TmFtZSI6IktyaXNwaW4iLCJlbWFpbCI6Im1hdGFuQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMjQxZTllZDM4MGJmNjZhMzVjNWVjYzA1NGQ4ZGVmZmQiLCJyb2xlSWQiOjJ9LCJpYXQiOjE3MTc2ODkzNDIsImV4cCI6MTcxNzcwMDE0Mn0.FKTIEFOj_e5OQ6jQ1hEHIJ1w2BZvfqX2LIJMwgsVju8",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYjViZGQ2NWMtMjY4Ny0xMWVmLWI2MDgtOTlhNjc1NTU0Yjc4IiwiZmlyc3ROYW1lIjoiUGFjcyIsImxhc3ROYW1lIjoiS3Jpc3BpbiIsImVtYWlsIjoicGFjc0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjI0MWU5ZWQzODBiZjY2YTM1YzVlY2MwNTRkOGRlZmZkIiwicm9sZUlkIjoyfSwiaWF0IjoxNzE5MTYxMzkxLCJleHAiOjE3MTkxNzIxOTF9.-jDC8AE1cR9WETv2uiuB6hdLVu_O2yxnsTVZeux_hXQ",
 							"type": "string"
 						}
 					]
@@ -37,14 +37,14 @@
 			"response": []
 		},
 		{
-			"name": "get csv",
+			"name": "all vacations with pagination",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYjViZGQ2NWMtMjY4Ny0xMWVmLWI2MDgtOTlhNjc1NTU0Yjc4IiwiZmlyc3ROYW1lIjoiUGFjcyIsImxhc3ROYW1lIjoiS3Jpc3BpbiIsImVtYWlsIjoicGFjc0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjI0MWU5ZWQzODBiZjY2YTM1YzVlY2MwNTRkOGRlZmZkIiwicm9sZUlkIjoyfSwiaWF0IjoxNzE4NDM3MDQ3LCJleHAiOjE3MTg0NDc4NDd9.RLHdkBaSfxvzjbEbi9lotaWQtpyUMOAZNzyc1NtKaqU",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYyNDg0YjktMzIzMC0xMWVmLThjNmItOTBlNGM2MzNhYWJjIiwiZmlyc3ROYW1lIjoiUGFjcyIsImxhc3ROYW1lIjoiS3Jpc3BpbiIsImVtYWlsIjoicGFjc0BnbWFpbC5jb20iLCJwYXNzd29yZCI6ImU2YjMyMzc5ODg4YWEzYjU1MmU4YzFhNzVkZDVmZWY5Iiwicm9sZUlkIjoyfSwiaWF0IjoxNzE5MjM4NDYzLCJleHAiOjE3MTkyNDkyNjN9.j832rN0kT9ClUPK0NunpTgT0CeDoyQNCVNKNwY_rqPE",
 							"type": "string"
 						}
 					]
@@ -52,7 +52,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/vacations/csv",
+					"raw": "http://localhost:8080/api/vacations/2/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -61,6 +61,39 @@
 					"path": [
 						"api",
 						"vacations",
+						"2",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get csv",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYjViZGQ2NWMtMjY4Ny0xMWVmLWI2MDgtOTlhNjc1NTU0Yjc4IiwiZmlyc3ROYW1lIjoiUGFjcyIsImxhc3ROYW1lIjoiS3Jpc3BpbiIsImVtYWlsIjoicGFjc0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjI0MWU5ZWQzODBiZjY2YTM1YzVlY2MwNTRkOGRlZmZkIiwicm9sZUlkIjoyfSwiaWF0IjoxNzE5MDY5OTY5LCJleHAiOjE3MTkwODA3Njl9.zAvZIRFJnepnFj-hzW751bLr2A0N3A4-jlz16uxk7Gg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/vacations/report/csv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"vacations",
+						"report",
 						"csv"
 					]
 				}
@@ -68,14 +101,14 @@
 			"response": []
 		},
 		{
-			"name": "all images",
+			"name": "one image",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMTE4Yjc1OTAtMjMwNi0xMWVmLTgxNDMtMjg3ZGZhNzA0MmY5IiwiZmlyc3ROYW1lIjoiTWF0YW4iLCJsYXN0TmFtZSI6IktyaXNwaW4iLCJlbWFpbCI6Im1hdGFuQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMjQxZTllZDM4MGJmNjZhMzVjNWVjYzA1NGQ4ZGVmZmQiLCJyb2xlSWQiOjJ9LCJpYXQiOjE3MTc2ODkzNDIsImV4cCI6MTcxNzcwMDE0Mn0.FKTIEFOj_e5OQ6jQ1hEHIJ1w2BZvfqX2LIJMwgsVju8",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYjViZGQ2NWMtMjY4Ny0xMWVmLWI2MDgtOTlhNjc1NTU0Yjc4IiwiZmlyc3ROYW1lIjoiUGFjcyIsImxhc3ROYW1lIjoiS3Jpc3BpbiIsImVtYWlsIjoicGFjc0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjI0MWU5ZWQzODBiZjY2YTM1YzVlY2MwNTRkOGRlZmZkIiwicm9sZUlkIjoyfSwiaWF0IjoxNzE4MDk1MjI1LCJleHAiOjE3MTgxMDYwMjV9.NrsMyMwEbgHM8YxiiGX7S_6TExlA8Yk3vfgClPS964o",
 							"type": "string"
 						}
 					]
@@ -133,10 +166,20 @@
 		{
 			"name": "all vacations by user following",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNDNmODZhYjUtMzIzMC0xMWVmLThjNmItOTBlNGM2MzNhYWJjIiwiZmlyc3ROYW1lIjoiTWF6YWwiLCJsYXN0TmFtZSI6IktyaXNwaW4iLCJlbWFpbCI6Im1hemFsQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZTZiMzIzNzk4ODhhYTNiNTUyZThjMWE3NWRkNWZlZjkiLCJyb2xlSWQiOjN9LCJpYXQiOjE3MTkyNDM0NjQsImV4cCI6MTcxOTI1NDI2NH0.f4qBq1kGxJOIO1hMII0iOyVGjJ7V1QSMN5OYXgir3QU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/followers/vacations/users/isFollowing/ee1b38d3-2004-11ef-9a1b-9323f668247f",
+					"raw": "http://localhost:8080/api/followers/vacations/users/isFollowing/b5bdd65c-2687-11ef-b608-99a675554b78",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -148,7 +191,7 @@
 						"vacations",
 						"users",
 						"isFollowing",
-						"ee1b38d3-2004-11ef-9a1b-9323f668247f"
+						"b5bdd65c-2687-11ef-b608-99a675554b78"
 					]
 				}
 			},
@@ -157,10 +200,20 @@
 		{
 			"name": "all vacations extended (number of following, is following?)",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNDNmODZhYjUtMzIzMC0xMWVmLThjNmItOTBlNGM2MzNhYWJjIiwiZmlyc3ROYW1lIjoiTWF6YWwiLCJsYXN0TmFtZSI6IktyaXNwaW4iLCJlbWFpbCI6Im1hemFsQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZTZiMzIzNzk4ODhhYTNiNTUyZThjMWE3NWRkNWZlZjkiLCJyb2xlSWQiOjN9LCJpYXQiOjE3MTkyNDM0NjQsImV4cCI6MTcxOTI1NDI2NH0.f4qBq1kGxJOIO1hMII0iOyVGjJ7V1QSMN5OYXgir3QU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/followers/vacations/extended/users/7241aaf3-1fec-11ef-9a1b-9323f668247f",
+					"raw": "http://localhost:8080/api/followers/vacations/extended/users/085c9608-2974-11ef-b357-6d172c966e63",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -172,7 +225,7 @@
 						"vacations",
 						"extended",
 						"users",
-						"7241aaf3-1fec-11ef-9a1b-9323f668247f"
+						"085c9608-2974-11ef-b357-6d172c966e63"
 					]
 				}
 			},
@@ -181,6 +234,16 @@
 		{
 			"name": "number of followers by vacation",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNDNmODZhYjUtMzIzMC0xMWVmLThjNmItOTBlNGM2MzNhYWJjIiwiZmlyc3ROYW1lIjoiTWF6YWwiLCJsYXN0TmFtZSI6IktyaXNwaW4iLCJlbWFpbCI6Im1hemFsQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZTZiMzIzNzk4ODhhYTNiNTUyZThjMWE3NWRkNWZlZjkiLCJyb2xlSWQiOjN9LCJpYXQiOjE3MTkyNDM0NjQsImV4cCI6MTcxOTI1NDI2NH0.f4qBq1kGxJOIO1hMII0iOyVGjJ7V1QSMN5OYXgir3QU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
@@ -201,12 +264,57 @@
 			"response": []
 		},
 		{
+			"name": "is following",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYjViZGQ2NWMtMjY4Ny0xMWVmLWI2MDgtOTlhNjc1NTU0Yjc4IiwiZmlyc3ROYW1lIjoiUGFjcyIsImxhc3ROYW1lIjoiS3Jpc3BpbiIsImVtYWlsIjoicGFjc0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjI0MWU5ZWQzODBiZjY2YTM1YzVlY2MwNTRkOGRlZmZkIiwicm9sZUlkIjoyfSwiaWF0IjoxNzE5MDY5OTY5LCJleHAiOjE3MTkwODA3Njl9.zAvZIRFJnepnFj-hzW751bLr2A0N3A4-jlz16uxk7Gg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/followers/vacations/users/isFollowing/cd5eb3a7-2d46-11ef-899e-d19c9b36397f/9adf0a92-2bea-11ef-913d-31d7a7bdbd7a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"followers",
+						"vacations",
+						"users",
+						"isFollowing",
+						"cd5eb3a7-2d46-11ef-899e-d19c9b36397f",
+						"9adf0a92-2bea-11ef-913d-31d7a7bdbd7a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "active vacations",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjYyNDg0YjktMzIzMC0xMWVmLThjNmItOTBlNGM2MzNhYWJjIiwiZmlyc3ROYW1lIjoiUGFjcyIsImxhc3ROYW1lIjoiS3Jpc3BpbiIsImVtYWlsIjoicGFjc0BnbWFpbC5jb20iLCJwYXNzd29yZCI6ImU2YjMyMzc5ODg4YWEzYjU1MmU4YzFhNzVkZDVmZWY5Iiwicm9sZUlkIjoyfSwiaWF0IjoxNzE5MjY1MzI0LCJleHAiOjE3MTkyNzYxMjR9.7uAmMNMEWiRVE5Iaiy2jnTwUTVAapJ4u7zlpWJ40FYM",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/vacations/active",
+					"raw": "http://localhost:8080/api/vacations/active/1/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -215,19 +323,31 @@
 					"path": [
 						"api",
 						"vacations",
-						"active"
+						"active",
+						"1",
+						"2"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "future vacations",
+			"name": "future vacations with pagination",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiYjViZGQ2NWMtMjY4Ny0xMWVmLWI2MDgtOTlhNjc1NTU0Yjc4IiwiZmlyc3ROYW1lIjoiUGFjcyIsImxhc3ROYW1lIjoiS3Jpc3BpbiIsImVtYWlsIjoicGFjc0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IjI0MWU5ZWQzODBiZjY2YTM1YzVlY2MwNTRkOGRlZmZkIiwicm9sZUlkIjoyfSwiaWF0IjoxNzE5MTY5NDczLCJleHAiOjE3MTkxODAyNzN9._IFqDbOF_XgcEi3UCq2ZCjWUnc3_NEIMIxR3YHFxCpk",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/vacations/future",
+					"raw": "http://localhost:8080/api/vacations/future/1/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -236,27 +356,9 @@
 					"path": [
 						"api",
 						"vacations",
-						"future"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "add new vacation",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/vacations",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"vacations"
+						"future",
+						"1",
+						"10"
 					]
 				}
 			},
@@ -294,6 +396,16 @@
 		{
 			"name": "add new vacation with image",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNDNmODZhYjUtMzIzMC0xMWVmLThjNmItOTBlNGM2MzNhYWJjIiwiZmlyc3ROYW1lIjoiTWF6YWwiLCJsYXN0TmFtZSI6IktyaXNwaW4iLCJlbWFpbCI6Im1hemFsQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZTZiMzIzNzk4ODhhYTNiNTUyZThjMWE3NWRkNWZlZjkiLCJyb2xlSWQiOjN9LCJpYXQiOjE3MTkyNDM0NjQsImV4cCI6MTcxOTI1NDI2NH0.f4qBq1kGxJOIO1hMII0iOyVGjJ7V1QSMN5OYXgir3QU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
@@ -301,33 +413,33 @@
 					"formdata": [
 						{
 							"key": "destination",
-							"value": "america",
+							"value": "Haifa",
 							"type": "text"
 						},
 						{
 							"key": "startDate",
-							"value": "2024-06-25",
+							"value": "2025-07-25",
 							"type": "text"
 						},
 						{
 							"key": "endDate",
-							"value": "2024-06-27",
+							"value": "2025-07-27",
 							"type": "text"
 						},
 						{
 							"key": "price",
-							"value": "2000.00",
+							"value": "100",
 							"type": "text"
 						},
 						{
 							"key": "description",
-							"value": "you cant throw gummies",
+							"value": "yadayadayada",
 							"type": "text"
 						},
 						{
 							"key": "image",
 							"type": "file",
-							"src": "/C:/Users/matan/Desktop/signagi.jpg"
+							"src": "/C:/Users/matan/Desktop/arthur.png"
 						}
 					]
 				},
@@ -439,68 +551,18 @@
 			"response": []
 		},
 		{
-			"name": "update vacation",
+			"name": "delete vacation",
 			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "    {\r\n        \"destination\": \"USA the heaven\",\r\n        \"startDate\": \"2024-06-25\",\r\n        \"endDate\": \"2024-06-27\",\r\n        \"price\": \"1000.00\",\r\n        \"description\": \"you cant throw hamburgers\",\r\n        \"imageName\": \"fats\"\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNDNmODZhYjUtMzIzMC0xMWVmLThjNmItOTBlNGM2MzNhYWJjIiwiZmlyc3ROYW1lIjoiTWF6YWwiLCJsYXN0TmFtZSI6IktyaXNwaW4iLCJlbWFpbCI6Im1hemFsQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZTZiMzIzNzk4ODhhYTNiNTUyZThjMWE3NWRkNWZlZjkiLCJyb2xlSWQiOjN9LCJpYXQiOjE3MTkyNDM0NjQsImV4cCI6MTcxOTI1NDI2NH0.f4qBq1kGxJOIO1hMII0iOyVGjJ7V1QSMN5OYXgir3QU",
+							"type": "string"
 						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/vacations/9dd82301-201c-11ef-9a1b-9323f668247f",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"vacations",
-						"9dd82301-201c-11ef-9a1b-9323f668247f"
 					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "update (PATCH) vacation",
-			"request": {
-				"method": "PATCH",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "    {\r\n        \"destination\": \"USA the hell\"\r\n    }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
 				},
-				"url": {
-					"raw": "http://localhost:8080/api/vacations/9dd82301-201c-11ef-9a1b-9323f668247f",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"vacations",
-						"9dd82301-201c-11ef-9a1b-9323f668247f"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "delete",
-			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
@@ -522,6 +584,16 @@
 		{
 			"name": "delete - unfollow",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNDNmODZhYjUtMzIzMC0xMWVmLThjNmItOTBlNGM2MzNhYWJjIiwiZmlyc3ROYW1lIjoiTWF6YWwiLCJsYXN0TmFtZSI6IktyaXNwaW4iLCJlbWFpbCI6Im1hemFsQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiZTZiMzIzNzk4ODhhYTNiNTUyZThjMWE3NWRkNWZlZjkiLCJyb2xlSWQiOjN9LCJpYXQiOjE3MTkyNDM0NjQsImV4cCI6MTcxOTI1NDI2NH0.f4qBq1kGxJOIO1hMII0iOyVGjJ7V1QSMN5OYXgir3QU",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
 				"header": [],
 				"body": {
@@ -534,7 +606,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/followers",
+					"raw": "http://localhost:8080/api/followers/b5bdd65c-2687-11ef-b608-99a675554b78/7ab028a8-2bf6-11ef-913d-31d7a7bdbd7a",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -542,7 +614,9 @@
 					"port": "8080",
 					"path": [
 						"api",
-						"followers"
+						"followers",
+						"b5bdd65c-2687-11ef-b608-99a675554b78",
+						"7ab028a8-2bf6-11ef-913d-31d7a7bdbd7a"
 					]
 				}
 			},
@@ -555,7 +629,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"matan@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+					"raw": "{\r\n    \"email\": \"pacs@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -601,28 +675,6 @@
 					"path": [
 						"api",
 						"signup"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "all images 2",
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/images",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"images"
 					]
 				}
 			},

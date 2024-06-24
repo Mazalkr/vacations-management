@@ -16,7 +16,7 @@ router.get('/', getAll);
 router.get('/:page/:limit', getAllPaginated);  
 router.get('/report', getAllFollowersPerVacation);  // number of followers for every vacation. for SCV and bar chart. 
 router.get('/report/csv', sendCSV);  // download CSV. 
-router.get('/active', getActiveVacations);
+router.get('/active/:page/:limit', getActiveVacations);
 router.get('/future/:page/:limit', getFutureVacations); 
 
 router.post('/', enforceAdmin, addImageToBody, validate(addVacationValidator), uploadImage, add);
