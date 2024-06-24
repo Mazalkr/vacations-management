@@ -55,7 +55,26 @@ class Vacation implements Model {
         return vacation;
     }
 
-    public async getFutureVacations(): Promise<DTO[]> {
+    // public async getFutureVacations(): Promise<DTO[]> {
+    //     const futureVacations = await query(`
+    //         SELECT      id,
+    //                     destination,
+    //                     startDate,
+    //                     endDate,
+    //                     price,
+    //                     description,
+    //                     imageName
+    //         FROM        vacations
+    //         WHERE       startDate > NOW()
+    //         ORDER BY    startDate ASC
+    //     `);
+    //     return futureVacations;
+    // }
+
+    // future vacations with pagination:
+    public async getFutureVacations(pagination: PaginationDTO): Promise<DTO[]> {
+        const { page, limit } = pagination;
+        const offset = (page - 1) * limit;
         const futureVacations = await query(`
             SELECT      id,
                         destination,
@@ -67,7 +86,8 @@ class Vacation implements Model {
             FROM        vacations
             WHERE       startDate > NOW()
             ORDER BY    startDate ASC
-        `);
+            LIMIT       ?, ?
+        `, [offset, limit]);
         return futureVacations;
     }
 

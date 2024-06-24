@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "./Pagination.css";
 // import Pagination from "../../../models/Pagination";
 
@@ -20,15 +21,13 @@ function Pagination(props: PaginationProps): JSX.Element {
             <nav aria-label="...">
                 <ul className="pagination pagination-sm">
                     {pageNumbers.map(page => (
-                        <li className="page-item" aria-current="page">
+                        <li className="page-item" aria-current="page" key={page}>
                                 <button className="page-link" key={page} onClick={() => props.paginate(page)}>{page}</button>
                         </li>
                     ))}
                 </ul>
             </nav>
         </div>
-
-
     );
 }
 

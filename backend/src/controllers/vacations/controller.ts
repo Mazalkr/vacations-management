@@ -24,9 +24,21 @@ export const getAllPaginated =  async (req: Request, res: Response, next: NextFu
     }
 }
 
+// export const getFutureVacations =  async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//         const futureVacations = await getModel().getFutureVacations();
+//         res.json(futureVacations.map(getImageUrl));
+//     } catch (err) {
+//         next(err);
+//     }
+// }
+
+// future vacations with pagination:
 export const getFutureVacations =  async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const futureVacations = await getModel().getFutureVacations();
+        const page = +req.params.page;
+        const limit = +req.params.limit;
+        const futureVacations = await getModel().getFutureVacations({ page, limit });
         res.json(futureVacations.map(getImageUrl));
     } catch (err) {
         next(err);

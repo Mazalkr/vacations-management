@@ -11,13 +11,18 @@ import path from "path";
 import { errorLogger } from "./middlewares/error-logger";
 import authentication from "./middlewares/authentication";
 import userLogger from "./middlewares/user-logger";
+import stripTags from "./middlewares/strip-tags";
+import limiter from "./middlewares/limiter";
 
 const server = express();
+server.use(limiter);
 server.use(cors());   
 server.use(authentication);  
 server.use(userLogger);  
 server.use(express.json()); 
 server.use(expressFileUpload());  
+
+server.use(stripTags);
 
 server.use('/api', authRouter);
 server.use('/api/vacations', vacationsRouter);  // 'enforceAuth'- instead we can write it in routers -> vacations.

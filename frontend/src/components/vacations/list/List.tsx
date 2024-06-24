@@ -44,14 +44,14 @@ function List(): JSX.Element {
         vacationsService.getAllPaginated({ page, limit })
             .then(vacationsFromServer => {
                 setVacations([...vacationsFromServer]);
-                setTotalVacations(vacationsFromServer.length)
+                setTotalVacations([...vacationsFromServer].length)
             })
             .catch(error => notify.error(error));
 
         // REDUX:
         const unsubscribe = vacationsStore.subscribe(() => {
             setVacations([...vacationsStore.getState().vacations]);  
-            setTotalVacations(vacationsStore.getState().vacations.length)
+            setTotalVacations([...vacationsStore.getState().vacations].length)
         })
 
         return unsubscribe;
@@ -60,19 +60,23 @@ function List(): JSX.Element {
    
     async function filteredVacations(event: ChangeEvent<HTMLSelectElement>) {
         const filterType = event.target.value;
+        let page;
+        const limit = appConfig.limit;
         try {
             switch(filterType) {
                 case 'allVacations':
                     // const allVacations = await vacationsService.getAll();
-                    const page = currentPage;
-                    const limit = appConfig.limit;
+                    page = currentPage;
                     const allVacations = await vacationsService.getAllPaginated({ page, limit });
                     setVacations([...allVacations]);
-                    setTotalVacations(allVacations.length)
+                    setTotalVacations([...allVacations].length);
                     break;
                 case 'futureVacations':
-                    const futureVacations = await vacationsService.getFutureVacations();
+                    // const futureVacations = await vacationsService.getFutureVacations();
+                    page = currentPage;
+                    const futureVacations = await vacationsService.getFutureVacations({ page, limit });
                     setVacations([...futureVacations]);
+                    setTotalVacations([...futureVacations].length);
                     break;
                 case 'activeVacations':
                     const activeVacations = await vacationsService.getActiveVacations();
@@ -123,6 +127,7 @@ function List(): JSX.Element {
             </div>
 
             {vacations.length === 0 && <Spinner/>}
+            {vacations.length > 10 &&  <p>pagination</p>}
 
             <div className="container">
                 <div className="row">
@@ -130,7 +135,7 @@ function List(): JSX.Element {
                 </div>
             </div>
 
-            <Pagination totalVacations={totalVacations} limit={appConfig.limit} paginate={paginate}/>
+            <Pagination totalVacations={vacations.length} limit={appConfig.limit} paginate={paginate}/>
 
         </div>
     );

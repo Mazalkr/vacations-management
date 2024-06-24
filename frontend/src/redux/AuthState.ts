@@ -37,7 +37,7 @@ export function authReducer(currentState = new AuthState(), action: AuthAction):
         case AuthActionType.Signup:  
         case AuthActionType.Login: 
             newState.token = action.payload as string;
-            console.log(`our jwt is ${action.payload}`);
+            // console.log(`our jwt is ${action.payload}`);
             const jwtPayload = jwtDecode(newState.token);
             newState.user = (jwtPayload as any).user;
             localStorage.setItem('token', newState.token);

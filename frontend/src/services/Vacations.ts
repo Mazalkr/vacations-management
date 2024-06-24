@@ -85,8 +85,15 @@ class Vacations {
         return vacation;
     }
 
-    public async getFutureVacations(): Promise<Vacation[]> {
-        const response = await axios.get<Vacation[]>(appConfig.futureVacationsUrl);
+    // public async getFutureVacations(): Promise<Vacation[]> {
+    //     const response = await axios.get<Vacation[]>(appConfig.futureVacationsUrl);
+    //     const futureVacations = response.data;
+    //     return futureVacations;
+    // }
+
+    // future vacations with pagination:
+    public async getFutureVacations(pagination: Pagination): Promise<Vacation[]> {
+        const response = await axios.get<Vacation[]>(`${appConfig.futureVacationsUrl}/${pagination.page}/${pagination.limit}`);
         const futureVacations = response.data;
         return futureVacations;
     }
