@@ -63,7 +63,6 @@ export const isFollowing =  async (req: Request, res: Response, next: NextFuncti
         const userId = req.params.userId;
         const vacationId = req.params.vacationId;
         const isFollowing = await getModel().isFollowing({ userId, vacationId});
-        // const isFollowing = await getModel().isFollowing(req.body);
         res.json(isFollowing);
     } catch (err) {
         next(err);

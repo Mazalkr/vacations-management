@@ -10,7 +10,6 @@ import User from "../../../models/User";
 function AuthMenu(): JSX.Element {
 
     const [user, setUser] = useState<User>();
-    // const [token, setToken] = useState<string>('');
 
     const navigate = useNavigate();
 
@@ -26,7 +25,6 @@ function AuthMenu(): JSX.Element {
             const token = authStore.getState().token;
             if(token) {
                 const user = jwtDecode<{user: User}>(token).user; 
-                // setToken(token);
                 setUser({...user});
             } else {
                 setUser(undefined);

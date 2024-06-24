@@ -12,7 +12,6 @@ export default function getImageUrl(vacation: DTO) {
         delete vacationWithImageUrl.image;
         return vacationWithImageUrl;
     } catch (err) {
-        // console.log(err);
         logger.error(err);
     }
 }

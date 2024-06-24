@@ -1,10 +1,10 @@
 import Model from "./model";
 import CredentialsDTO from './credentials-dto';
 import UserDTO, { Roles } from './user-dto';
-import { OkPacketParams } from "mysql2";
 import query from "../../db/mysql";
 import config from "config";
 import { hashPassword } from "../../utils/crypto";
+import { v4 } from "uuid";
 
 class User implements Model {
 
@@ -40,11 +40,12 @@ class User implements Model {
 
     public async signup(user: UserDTO): Promise<UserDTO> {
         const { firstName, lastName, email, password } = user;  // without roleId, because the default is 'USER'.
-        const result: OkPacketParams = await query(`
-            INSERT INTO users(firstName, lastName, email, password, roleId)
-            VALUES  (?,?,?,?,?)
-        `, [firstName, lastName, email, hashPassword(password, config.get<string>('app.secret')), Roles.USER]);
-        return this.getOne(result.insertId.toString());
+        const id = v4();
+        await query(`
+            INSERT INTO users(id, firstName, lastName, email, password, roleId)
+            VALUES  (?,?,?,?,?,?)
+        `, [id, firstName, lastName, email, hashPassword(password, config.get<string>('app.secret')), Roles.USER]);
+        return this.getOne(id);
     }
 }
 

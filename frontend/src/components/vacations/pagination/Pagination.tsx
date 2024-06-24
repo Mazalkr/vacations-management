@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import "./Pagination.css";
-// import Pagination from "../../../models/Pagination";
 
 interface PaginationProps {
-    // pagination: Pagination;
     totalVacations: number;
-    limit: number; // number of vacations per page (the demand in the project = 10).
+    limit: number; // number of vacations per page.
     paginate: Function;
 }
 
@@ -13,7 +11,7 @@ function Pagination(props: PaginationProps): JSX.Element {
 
     const pageNumbers = [];
     const totalPages = Math.ceil(props.totalVacations / props.limit); 
-    // for example: if there is 12 vacations, and we want just 10 vacations per page --> 1.2 --> ceil to 2 pages.
+    
     for (let i = 1; i <= totalPages; i++) pageNumbers.push(i);
 
     return (

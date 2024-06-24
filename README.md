@@ -4,7 +4,7 @@ Vacations FullStack Website - 🌈'Over The Rainbow Tours'🌈:
 
 🔙 Backend: REST-API, TypeScript, NodeJS (Express).
 
-🧑🏻‍💻 Frontend: TypeScript, React.
+🧑🏻‍💻 Frontend: TypeScript, React, Bootstrap CSS.
 
 ***********************************************************
 

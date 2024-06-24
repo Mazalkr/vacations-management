@@ -25,7 +25,7 @@ server.use(expressFileUpload());
 server.use(stripTags);
 
 server.use('/api', authRouter);
-server.use('/api/vacations', vacationsRouter);  // 'enforceAuth'- instead we can write it in routers -> vacations.
+server.use('/api/vacations', vacationsRouter);  
 server.use('/images', express.static(path.resolve(config.get<string>('app.images.path'))));
 server.use('/api/followers', followersRouter);
 

@@ -24,15 +24,6 @@ export const getAllPaginated =  async (req: Request, res: Response, next: NextFu
     }
 }
 
-// export const getFutureVacations =  async (req: Request, res: Response, next: NextFunction) => {
-//     try {
-//         const futureVacations = await getModel().getFutureVacations();
-//         res.json(futureVacations.map(getImageUrl));
-//     } catch (err) {
-//         next(err);
-//     }
-// }
-
 // future vacations with pagination:
 export const getFutureVacations =  async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -57,7 +48,7 @@ export const getActiveVacations =  async (req: Request, res: Response, next: Nex
 export const add =  async (req: Request, res: Response, next: NextFunction) => {
     try {
         const newVacation = await getModel().add(req.body);
-        res.status(StatusCodes.CREATED).json(getImageUrl(newVacation)); // the status code in postman will be: "201 Created".
+        res.status(StatusCodes.CREATED).json(getImageUrl(newVacation)); // 201 Created.
     } catch (err) {
         next(err);
     }

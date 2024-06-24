@@ -9,9 +9,6 @@ import { vacationsStore } from "../../../redux/VacationsState";
 import Spinner from "../../common/spinner/Spinner";
 import User from "../../../models/User";
 import { authStore } from "../../../redux/AuthState";
-import Follower from "../../../models/Follower";
-import { followersStore } from "../../../redux/FollowersState";
-import { useParams } from "react-router-dom";
 import appConfig from "../../../utils/AppConfig";
 import Pagination from "../pagination/Pagination";
 
@@ -22,10 +19,6 @@ function List(): JSX.Element {
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [totalVacations, setTotalVacations] = useState<number>(0);
     
-    // // Pagination:
-    // const startIndex = (currentPage - 1) * appConfig.limit;
-    // const endIndex = currentPage * appConfig.limit;
-
     useEffect(() => {
         setUser(authStore.getState().user); 
         
@@ -40,11 +33,9 @@ function List(): JSX.Element {
         const page = currentPage;
         const limit = appConfig.limit;
 
-        // vacationsService.getAll()
         vacationsService.getAllPaginated({ page, limit })
             .then(vacationsFromServer => {
                 setVacations([...vacationsFromServer]);
-                // setTotalVacations([...vacationsFromServer].length)
                 setTotalVacations(vacationsFromServer[0].totalVacations as number)
             })
             .catch(error => notify.error(error));
@@ -66,14 +57,12 @@ function List(): JSX.Element {
         try {
             switch(filterType) {
                 case 'allVacations':
-                    // const allVacations = await vacationsService.getAll();
                     page = currentPage;
                     const allVacations = await vacationsService.getAllPaginated({ page, limit });
                     setVacations([...allVacations]);
                     setTotalVacations(allVacations[0].totalVacations as number);
                     break;
                 case 'futureVacations':
-                    // const futureVacations = await vacationsService.getFutureVacations();
                     page = currentPage;
                     const futureVacations = await vacationsService.getFutureVacations({ page, limit });
                     setVacations([...futureVacations]);
@@ -135,7 +124,6 @@ function List(): JSX.Element {
                 </div>
             </div>
 
-            {/* {(vacations[0].totalVacations as number) > 10 && <Pagination totalVacations={totalVacations} limit={appConfig.limit} paginate={paginate}/>} */}
             <Pagination totalVacations={totalVacations} limit={appConfig.limit} paginate={paginate}/>
 
         </div>

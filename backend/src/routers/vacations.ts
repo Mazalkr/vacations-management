@@ -13,12 +13,11 @@ const router = Router();
 router.use(enforceAuth);
 
 router.get('/', getAll);
-router.get('/:page/:limit', getAllPaginated);  // getAll with pagination
+router.get('/:page/:limit', getAllPaginated);  
 router.get('/report', getAllFollowersPerVacation);  // number of followers for every vacation. for SCV and bar chart. 
 router.get('/report/csv', sendCSV);  // download CSV. 
 router.get('/active', getActiveVacations);
-// router.get('/future', getFutureVacations);
-router.get('/future/:page/:limit', getFutureVacations); // with pagination
+router.get('/future/:page/:limit', getFutureVacations); 
 
 router.post('/', enforceAdmin, addImageToBody, validate(addVacationValidator), uploadImage, add);
 router.put('/:id', enforceAdmin, addImageToBody, validate(putVacationValidator), uploadImage, update);

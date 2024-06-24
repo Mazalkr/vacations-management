@@ -3,6 +3,7 @@ import DTO from './dto';
 import PaginationDTO from './pagination-dto';
 import { OkPacketParams } from "mysql2";
 import query from "../../db/mysql";
+import { v4 } from "uuid";
 
 class Vacation implements Model {
 
@@ -56,22 +57,6 @@ class Vacation implements Model {
         return vacation;
     }
 
-    // public async getFutureVacations(): Promise<DTO[]> {
-    //     const futureVacations = await query(`
-    //         SELECT      id,
-    //                     destination,
-    //                     startDate,
-    //                     endDate,
-    //                     price,
-    //                     description,
-    //                     imageName
-    //         FROM        vacations
-    //         WHERE       startDate > NOW()
-    //         ORDER BY    startDate ASC
-    //     `);
-    //     return futureVacations;
-    // }
-
     // future vacations with pagination:
     public async getFutureVacations(pagination: PaginationDTO): Promise<DTO[]> {
         const { page, limit } = pagination;
@@ -118,11 +103,12 @@ class Vacation implements Model {
             description,
             imageName
         } = vacation;
-        const result: OkPacketParams = await query(`
-            INSERT INTO vacations(destination, startDate, endDate, price, description, imageName)
-            VALUES  (?,?,?,?,?,?)
-        `, [destination, startDate, endDate, price, description, imageName]);
-        return this.getOne(result.insertId.toString()); // insertId is from the result from the sql
+        const id = v4();
+        await query(`
+            INSERT INTO vacations(id, destination, startDate, endDate, price, description, imageName)
+            VALUES  (?,?,?,?,?,?,?)
+        `, [id, destination, startDate, endDate, price, description, imageName]);
+        return await this.getOne(id); 
     }
 
     public async delete(id: string): Promise<boolean> {
